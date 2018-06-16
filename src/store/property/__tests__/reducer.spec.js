@@ -5,13 +5,14 @@ const initialState = {
     price: undefined,
     agency: undefined,
     mainImage: undefined,
-    saved: false,
+    column: undefined
 }
 describe('store/property/reducer', () => {
   it('has an initial state', () => {
     expect(property()).toEqual(initialState);
   })
   it('does not affect state', () => {
-    Reducer(property).expect({ type: 'NOT_EXITING' }).toReturnState(initialState)
+    Reducer(property).expect({ type: 'NOT_EXITING' }).toReturnState(initialState);
   })
+
 })

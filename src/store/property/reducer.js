@@ -3,7 +3,7 @@ const initialState = {
   price: undefined,
   agency: undefined,
   mainImage: undefined,
-  saved: false,
+  column: undefined
 }
 
 const property = (state = initialState, action) => {

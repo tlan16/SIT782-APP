@@ -1,5 +1,7 @@
+import Immutable from 'seamless-immutable'
 import root from '../reducers';
 import { Reducer } from 'redux-testkit';
+
 
 const initialState = {
   results: [],
