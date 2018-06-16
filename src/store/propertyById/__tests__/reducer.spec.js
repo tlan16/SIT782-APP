@@ -7,7 +7,7 @@ const initialState = {
     mainImage: undefined,
     column: undefined
 }
-describe('store/property/reducer', () => {
+describe('store/propertyById/reducer', () => {
   it('has an initial state', () => {
     expect(propertyById()).toEqual(initialState);
   })

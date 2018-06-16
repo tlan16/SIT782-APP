@@ -54,7 +54,7 @@ const initialState = {
   saved: []
 }
 
-describe('store/reducers', () => {
+describe('store/listByColumn/reducer', () => {
   it('has an initial state', () => {
     expect(listByColumn()).toEqual(initialState);
   })
