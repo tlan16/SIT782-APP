@@ -6,7 +6,7 @@ const initialState = {
   saved: []
 }
 
-describe('store/category/reducer', () => {
+describe('store/reducers', () => {
   it('has an initial state', () => {
     expect(root()).toEqual(initialState);
   })
