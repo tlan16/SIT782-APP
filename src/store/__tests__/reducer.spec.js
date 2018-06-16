@@ -1,4 +1,4 @@
-import category from '../reducer';
+import root from '../reducers';
 import { Reducer } from 'redux-testkit';
 
 const initialState = {
@@ -8,9 +8,9 @@ const initialState = {
 
 describe('store/category/reducer', () => {
   it('has an initial state', () => {
-    expect(category()).toEqual(initialState);
+    expect(root()).toEqual(initialState);
   })
   it('does not affect state', () => {
-    Reducer(category).expect({type: 'NOT_EXITSTING'}).toReturnState(initialState);
+    Reducer(root).expect({type: 'NOT_EXITSTING'}).toReturnState(initialState);
   })
 })
