@@ -1,7 +1,7 @@
 import Immutable from 'seamless-immutable'
-import root from '../reducers';
+import listByColumn from '../reducer';
 import { Reducer } from 'redux-testkit';
-import * as actionTypes from '../../actionTypes';
+import * as actionTypes from '../../../actionTypes';
 
 const sampleData = {
   "results": [{
@@ -56,14 +56,14 @@ const initialState = {
 
 describe('store/reducers', () => {
   it('has an initial state', () => {
-    expect(root()).toEqual(initialState);
+    expect(listByColumn()).toEqual(initialState);
   })
   it('does not affect state', () => {
-    Reducer(root).expect({type: 'NOT_EXITSTING'}).toReturnState(initialState);
+    Reducer(listByColumn).expect({type: 'NOT_EXITSTING'}).toReturnState(initialState);
   })
   it('should store all fetched properties', () => {
     const allProperties = sampleData
     const action = { type: actionTypes.FETCH_ALL_PROPERTIES, allProperties};
-    Reducer(root).expect(action).toReturnState({...initialState, ...allProperties})
+    Reducer(listByColumn).expect(action).toReturnState({...initialState, ...allProperties})
   })
 })

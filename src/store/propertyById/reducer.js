@@ -6,8 +6,8 @@ const initialState = {
   column: undefined
 }
 
-const property = (state = initialState, action) => {
+const propertyById = (state = initialState, action) => {
    return state
 }
 
-export default property;
+export default propertyById;
