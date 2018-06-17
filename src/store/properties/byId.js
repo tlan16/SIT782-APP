@@ -28,3 +28,7 @@ const byId = (state = {}, action = {}) => {
      
 }
 export default byId
+
+export const getById = (state, id) => {
+     return state[id]
+}
