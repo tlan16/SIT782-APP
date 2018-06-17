@@ -1,6 +1,6 @@
-import listByColumn from '../listByColumn';
+import listByColumn from '../../listByColumn';
 import { Reducer } from 'redux-testkit';
-import { PROPERTIES_FETCHED, ADD_TO_SAVED, REMOVE_FROM_SAVED } from '../../../actionTypes';
+import { PROPERTIES_FETCHED, ADD_TO_SAVED, REMOVE_FROM_SAVED } from '../../../../actionTypes';
 import Immutable from 'seamless-immutable';
 
 const initialState = {

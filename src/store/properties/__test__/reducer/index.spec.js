@@ -1,6 +1,6 @@
-import properties from '../reducer';
+import properties from '../../index';
 import { Reducer } from 'redux-testkit';
-import { PROPERTIES_FETCHED } from '../../../actionTypes';
+import { PROPERTIES_FETCHED } from '../../../../actionTypes';
 import Immutable from 'seamless-immutable';
 
 
@@ -31,7 +31,7 @@ const sampleResponse = {
   saved: [property2]
 }
 
-describe('store/properties/reducer', () => {
+describe('store/properties/index', () => {
   it('should have initial state', () => {
     expect(properties()).toEqual(initialState);
   });

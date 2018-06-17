@@ -35,3 +35,7 @@ const listByColumn = ( state = initialState, action = {} ) => {
    }
 }
 export default listByColumn
+
+export const getSavedProperties = ( state ) => {
+    return state.saved;
+}
