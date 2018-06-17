@@ -34,8 +34,11 @@ describe('store/properties/byId', () => {
 
   it('should store fetched properties in an object', () => {
     const response = sampleResponse;
-    const action = { type: PROPERTIES_FETCHED, response };
+    const savedArray = response.saved;
+    const resultsArray = response.results;
+    const action = { type: PROPERTIES_FETCHED, savedArray, resultsArray };
     const returnState =  { '1': { ...property1, column: 'results' }, '2': { ...property2, column:'saved' } };
     Reducer(byId).expect(action).toReturnState(returnState);
   })
+
 })

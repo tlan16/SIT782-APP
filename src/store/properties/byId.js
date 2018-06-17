@@ -3,8 +3,8 @@ import  { PROPERTIES_FETCHED } from '../../actionTypes'
 const byId = (state = {}, action = {}) => {
      switch(action.type){
        case PROPERTIES_FETCHED:
-          const resultsArray = action.response.results;
-          const savedArray = action.response.saved;
+          const resultsArray = action.resultsArray;
+          const savedArray = action.savedArray;
 
           const resultsObject = resultsArray.reduce((acc, value) => {
               const id = value.id;

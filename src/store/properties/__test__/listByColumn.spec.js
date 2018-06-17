@@ -36,7 +36,9 @@ describe('store/properties/listByColumn', () => {
   })
   it('should store fectched properties in a list of ids', () => {
     const response = sampleResponse;
-    const action = { type: PROPERTIES_FETCHED, response };
+    const savedArray = response.saved;
+    const resultsArray = response.results;
+    const action = { type: PROPERTIES_FETCHED, savedArray, resultsArray };
     const returnState = {
           results: ['1'],
           saved: ['2']
