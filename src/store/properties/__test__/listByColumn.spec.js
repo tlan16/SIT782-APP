@@ -1,6 +1,6 @@
 import listByColumn from '../listByColumn';
 import { Reducer } from 'redux-testkit';
-import { PROPERTIES_FETCHED, ADD_TO_SAVED } from '../../../actionTypes';
+import { PROPERTIES_FETCHED, ADD_TO_SAVED, REMOVE_FROM_SAVED } from '../../../actionTypes';
 import Immutable from 'seamless-immutable';
 
 const initialState = {
@@ -93,6 +93,20 @@ describe('store/properties/listByColumn', () => {
         saved: ['2', '1']
       }  
       Reducer(listByColumn).withState(oldState).expect(action).toReturnState(newState);
+   })
+
+   it('remove the id from savedList when removing to saved', () => {
+     const id = '2';
+     const action = { type: REMOVE_FROM_SAVED, id };
+     const oldState = Immutable({
+      results: ['1'],
+      saved: ['2']
+       })
+     const newState = {
+       results: ['1'],
+       saved: []
+     }
+     Reducer(listByColumn).withState(oldState).expect(action).toReturnState(newState);
    })
 
 })
