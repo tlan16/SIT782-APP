@@ -1,14 +1,13 @@
+import  { PROPERTIES_FETCHED } from '../../actionTypes'
+import { combineReducers } from "redux";
+import byId from './byId';
+import listByColumn from './listByColumn';
 
-const initialState = {
-  byId: undefined,
-  listByColumn: {
-    results: [],
-    saved:[]
-  }
-}
 
-const properties = ( state = initialState, action = {} ) => {
-    return state
-}
+const properties = combineReducers({
+  byId,
+  listByColumn
+})
+
 
 export default properties

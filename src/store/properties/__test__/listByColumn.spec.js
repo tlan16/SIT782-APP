@@ -1,15 +1,11 @@
-import properties from '../reducer';
+import listByColumn from '../listByColumn';
 import { Reducer } from 'redux-testkit';
 import { PROPERTIES_FETCHED } from '../../../actionTypes';
 import Immutable from 'seamless-immutable';
 
-
 const initialState = {
-  byId: {},
-  listByColumn: {
-    results: [],
-    saved:[]
-  }
+  results: [],
+  saved:[]
 }
 
 const property1 = {
@@ -31,25 +27,22 @@ const sampleResponse = {
   saved: [property2]
 }
 
-describe('store/properties/reducer', () => {
+describe('store/properties/listByColumn', () => {
   it('should have initial state', () => {
-    expect(properties()).toEqual(initialState);
+    expect(listByColumn()).toEqual(initialState);
   });
-
   it('should not affect state', () => {
-    Reducer(properties).expect({type: 'NOT_EXISTING'}).toReturnState(initialState);
+    Reducer(listByColumn).expect({type: 'NOT_EXISTING'}).toReturnState(initialState);
   })
-
-  it('should store fetched properties', () => {
+  it('should store fectched properties in a list of ids', () => {
     const response = sampleResponse;
     const action = { type: PROPERTIES_FETCHED, response };
     const returnState = {
-      byId: {'1': { ...property1, column: 'results' }, '2': { ...property2, column: 'saved' }},
-      listByColumn: {
-        results: ['1'],
-        saved: ['2']
-      }
-    }
-   Reducer(properties).expect(action).toReturnState(returnState)
+          results: ['1'],
+          saved: ['2']
+  }
+    Reducer(listByColumn).expect(action).toReturnState(returnState)
   })
+
+
 })
