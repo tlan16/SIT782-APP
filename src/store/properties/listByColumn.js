@@ -1,4 +1,4 @@
-import { PROPERTIES_FETCHED } from "../../actionTypes";
+import { PROPERTIES_FETCHED, ADD_TO_SAVED } from "../../actionTypes";
 
 const initialState = {
   results: [],
@@ -13,6 +13,12 @@ const listByColumn = ( state = initialState, action = {} ) => {
           return {
             results: resultsArray.map( property => property.id ),
             saved: savedArray.map( property => property.id )
+          }
+     case ADD_TO_SAVED:
+          const id = action.id;
+          return {
+            ...state,
+            saved: [...state.saved, id]
           }
      default:
           return state;

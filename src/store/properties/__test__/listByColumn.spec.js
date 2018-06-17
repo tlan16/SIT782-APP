@@ -1,6 +1,6 @@
 import listByColumn from '../listByColumn';
 import { Reducer } from 'redux-testkit';
-import { PROPERTIES_FETCHED } from '../../../actionTypes';
+import { PROPERTIES_FETCHED, ADD_TO_SAVED } from '../../../actionTypes';
 import Immutable from 'seamless-immutable';
 
 const initialState = {
@@ -79,6 +79,20 @@ describe('store/properties/listByColumn', () => {
       saved: ['1']
     }
     Reducer(listByColumn).withState(oldState).expect(action).toReturnState(newState);
+   })
+
+   it('add the id to savedList when adding to saved ', () => {
+     const id = '1';
+     const action = { type: ADD_TO_SAVED, id };
+     const oldState = {
+      results: ['1'],
+      saved: ['2']
+       }  
+      const newState = {
+        results: ['1'],
+        saved: ['2', '1']
+      }  
+      Reducer(listByColumn).withState(oldState).expect(action).toReturnState(newState);
    })
 
 })
