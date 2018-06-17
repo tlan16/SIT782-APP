@@ -109,4 +109,14 @@ describe('store/properties/listByColumn', () => {
      Reducer(listByColumn).withState(oldState).expect(action).toReturnState(newState);
    })
 
+   it('returns the old state if the property to remove does not exist', () => {
+    const id = '1';
+    const action = { type: REMOVE_FROM_SAVED, id };
+    const oldState = Immutable({
+     results: ['1'],
+     saved: ['2']
+      })
+    Reducer(listByColumn).withState(oldState).expect(action).toReturnState(oldState);
+   })
+
 })
