@@ -12,15 +12,17 @@ const byId = (state = {}, action = {}) => {
               return acc;
           }, {});
 
-          const savedObject = savedArray.reduce((acc, value) => {
+          const combination = savedArray.reduce((acc, value) => {
               const id = value.id;
-              acc[id] = {...value, column: 'saved'}
+              if(acc[id]){
+                acc[id] = {...value, column: 'both'}
+              }else{
+                acc[id] = {...value, column: 'saved'}
+              }
               return acc;
-          }, {})
-          return {
-            ...savedObject,
-            ...resultsObject
-          }
+          }, resultsObject)
+          return combination;
+
         default:
            return state;
      }

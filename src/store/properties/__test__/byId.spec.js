@@ -33,6 +33,12 @@ const sampleResponse1 = {
   results: [property3],
   saved: [property1]
 }
+
+const sampleResponse2 = {
+  results: [property1, property3],
+  saved: [property1]
+}
+
 const initialState = {}
 
 describe('store/properties/byId', () => {
@@ -63,4 +69,12 @@ describe('store/properties/byId', () => {
    Reducer(byId).withState(oldState).expect(action).toReturnState(newState);
   })
 
+  it('stores "both" in the column when property appears in both saved and results', () => {
+    const response = sampleResponse2;
+    const savedArray = response.saved;
+    const resultsArray = response.results;
+    const action = { type: PROPERTIES_FETCHED, savedArray, resultsArray };
+    const returnState = {'3': {...property3, column: 'results' }, '1': { ...property1, column:'both' }}
+    Reducer(byId).expect(action).toReturnState(returnState);
+   })
 })

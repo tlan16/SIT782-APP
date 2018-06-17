@@ -40,18 +40,4 @@ describe('store/properties/reducer', () => {
     Reducer(properties).expect({type: 'NOT_EXISTING'}).toReturnState(initialState);
   })
 
-  it('should store fetched properties', () => {
-    const response = sampleResponse;
-    const savedArray = response.saved;
-    const resultsArray = response.results;
-    const action = { type: PROPERTIES_FETCHED, savedArray, resultsArray };
-    const returnState = {
-      byId: {'1': { ...property1, column: 'results' }, '2': { ...property2, column: 'saved' }},
-      listByColumn: {
-        results: ['1'],
-        saved: ['2']
-      }
-    }
-   Reducer(properties).expect(action).toReturnState(returnState)
-  })
 })

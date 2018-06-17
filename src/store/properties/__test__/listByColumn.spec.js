@@ -39,13 +39,20 @@ const sampleResponse1 = {
   saved: [property1]
 }
 
+const sampleResponse2 = {
+  results: [property1, property3],
+  saved: [property1]
+}
+
 describe('store/properties/listByColumn', () => {
   it('should have initial state', () => {
     expect(listByColumn()).toEqual(initialState);
   });
+
   it('should not affect state', () => {
     Reducer(listByColumn).expect({type: 'NOT_EXISTING'}).toReturnState(initialState);
   })
+
   it('should store fectched properties in a list of ids', () => {
     const response = sampleResponse;
     const savedArray = response.saved;
@@ -57,6 +64,7 @@ describe('store/properties/listByColumn', () => {
   }
     Reducer(listByColumn).expect(action).toReturnState(returnState)
   })
+
   it('should store fetched properties and override existing properties in both lists', () => {
     const response = sampleResponse1;
     const savedArray = response.saved;
@@ -73,4 +81,15 @@ describe('store/properties/listByColumn', () => {
     Reducer(listByColumn).withState(oldState).expect(action).toReturnState(newState);
    })
 
+  it('stores a property in both column lists when it is contained by both arrays', () => {
+    const response = sampleResponse2;
+    const savedArray = response.saved;
+    const resultsArray = response.results;
+    const action = { type: PROPERTIES_FETCHED, savedArray, resultsArray };
+    const returnState = {
+      results: ['1', '3'],
+      saved: ['1']
+    }
+    Reducer(listByColumn).expect(action).toReturnState(returnState)
+  })
 })
