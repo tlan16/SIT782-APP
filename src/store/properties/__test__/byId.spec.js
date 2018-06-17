@@ -55,7 +55,7 @@ describe('store/properties/byId', () => {
     const savedArray = response.saved;
     const resultsArray = response.results;
     const action = { type: PROPERTIES_FETCHED, savedArray, resultsArray };
-    const returnState =  { '1': { ...property1, column: 'results' }, '2': { ...property2, column:'saved' } };
+    const returnState =  { '1': property1, '2': property2 };
     Reducer(byId).expect(action).toReturnState(returnState);
   })
 
@@ -64,17 +64,10 @@ describe('store/properties/byId', () => {
    const savedArray = response.saved;
    const resultsArray = response.results;
    const action = { type: PROPERTIES_FETCHED, savedArray, resultsArray };
-   const oldState = { '1': { ...property1, column: 'results' }, '2': { ...property2, column:'saved' } };
-   const newState = {'3': {...property3, column: 'results' }, '1': { ...property1, column:'saved' }}
+   const oldState = { '1': property1, '2': property2 };
+   const newState = { '3': property3, '1': property1 }
    Reducer(byId).withState(oldState).expect(action).toReturnState(newState);
   })
 
-  it('stores "both" in the column when property appears in both saved and results', () => {
-    const response = sampleResponse2;
-    const savedArray = response.saved;
-    const resultsArray = response.results;
-    const action = { type: PROPERTIES_FETCHED, savedArray, resultsArray };
-    const returnState = {'3': {...property3, column: 'results' }, '1': { ...property1, column:'both' }}
-    Reducer(byId).expect(action).toReturnState(returnState);
-   })
+   
 })

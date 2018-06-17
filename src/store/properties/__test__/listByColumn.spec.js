@@ -81,15 +81,4 @@ describe('store/properties/listByColumn', () => {
     Reducer(listByColumn).withState(oldState).expect(action).toReturnState(newState);
    })
 
-  it('stores a property in both column lists when it is contained by both arrays', () => {
-    const response = sampleResponse2;
-    const savedArray = response.saved;
-    const resultsArray = response.results;
-    const action = { type: PROPERTIES_FETCHED, savedArray, resultsArray };
-    const returnState = {
-      results: ['1', '3'],
-      saved: ['1']
-    }
-    Reducer(listByColumn).expect(action).toReturnState(returnState)
-  })
 })

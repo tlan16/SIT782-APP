@@ -8,20 +8,19 @@ const byId = (state = {}, action = {}) => {
 
           const resultsObject = resultsArray.reduce((acc, value) => {
               const id = value.id;
-              acc[id] = {...value, column: 'results'}
+              acc[id] = value
               return acc;
           }, {});
 
-          const combination = savedArray.reduce((acc, value) => {
-              const id = value.id;
-              if(acc[id]){
-                acc[id] = {...value, column: 'both'}
-              }else{
-                acc[id] = {...value, column: 'saved'}
-              }
-              return acc;
-          }, resultsObject)
-          return combination;
+          const savedObject = savedArray.reduce((acc, value) => {
+            const id = value.id;
+            acc[id] = value
+            return acc;
+          }, {})
+          return {
+            ...resultsObject,
+            ...savedObject
+          };
 
         default:
            return state;
