@@ -64,7 +64,7 @@ describe('store/properties/byId', () => {
    const savedArray = response.saved;
    const resultsArray = response.results;
    const action = { type: PROPERTIES_FETCHED, savedArray, resultsArray };
-   const oldState = { '1': property1, '2': property2 };
+   const oldState = Immutable({ '1': property1, '2': property2 });
    const newState = { '3': property3, '1': property1 }
    Reducer(byId).withState(oldState).expect(action).toReturnState(newState);
   })

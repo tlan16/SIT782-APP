@@ -70,10 +70,10 @@ describe('store/properties/listByColumn', () => {
     const savedArray = response.saved;
     const resultsArray = response.results;
     const action = { type: PROPERTIES_FETCHED, savedArray, resultsArray };
-    const oldState = {
+    const oldState = Immutable({
       results: ['1'],
       saved: ['2']
-}
+})
     const newState = {
       results: ['3'],
       saved: ['1']
@@ -84,10 +84,10 @@ describe('store/properties/listByColumn', () => {
    it('add the id to savedList when adding to saved ', () => {
      const id = '1';
      const action = { type: ADD_TO_SAVED, id };
-     const oldState = {
+     const oldState = Immutable({
       results: ['1'],
       saved: ['2']
-       }  
+       })
       const newState = {
         results: ['1'],
         saved: ['2', '1']
