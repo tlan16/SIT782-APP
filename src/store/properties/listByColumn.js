@@ -39,3 +39,6 @@ export default listByColumn
 export const getSavedProperties = ( state ) => {
     return state.saved;
 }
+export const getResultsProperties = ( state ) => {
+  return state.results;
+}
