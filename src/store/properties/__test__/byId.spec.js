@@ -17,9 +17,21 @@ const property2 = {
   mainImage: 'image2'
 }
 
+const property3 = {
+  price: 'price3',
+  agency: 'agency3',
+  id: '3',
+  mainImage: 'image3'
+}
+
 const sampleResponse = {
   results: [property1],
   saved: [property2]
+}
+
+const sampleResponse1 = {
+  results: [property3],
+  saved: [property1]
 }
 const initialState = {}
 
@@ -39,6 +51,16 @@ describe('store/properties/byId', () => {
     const action = { type: PROPERTIES_FETCHED, savedArray, resultsArray };
     const returnState =  { '1': { ...property1, column: 'results' }, '2': { ...property2, column:'saved' } };
     Reducer(byId).expect(action).toReturnState(returnState);
+  })
+
+  it('should store fetched properties and override existing properties in an object', () => {
+   const response = sampleResponse1;
+   const savedArray = response.saved;
+   const resultsArray = response.results;
+   const action = { type: PROPERTIES_FETCHED, savedArray, resultsArray };
+   const oldState = { '1': { ...property1, column: 'results' }, '2': { ...property2, column:'saved' } };
+   const newState = {'3': {...property3, column: 'results' }, '1': { ...property1, column:'saved' }}
+   Reducer(byId).withState(oldState).expect(action).toReturnState(newState);
   })
 
 })

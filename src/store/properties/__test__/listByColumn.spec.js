@@ -22,9 +22,21 @@ const property2 = {
   mainImage: 'image2'
 }
 
+const property3 = {
+  price: 'price3',
+  agency: 'agency3',
+  id: '3',
+  mainImage: 'image3'
+}
+
 const sampleResponse = {
   results: [property1],
   saved: [property2]
+}
+
+const sampleResponse1 = {
+  results: [property3],
+  saved: [property1]
 }
 
 describe('store/properties/listByColumn', () => {
@@ -45,6 +57,20 @@ describe('store/properties/listByColumn', () => {
   }
     Reducer(listByColumn).expect(action).toReturnState(returnState)
   })
-
+  it('should store fetched properties and override existing properties in both lists', () => {
+    const response = sampleResponse1;
+    const savedArray = response.saved;
+    const resultsArray = response.results;
+    const action = { type: PROPERTIES_FETCHED, savedArray, resultsArray };
+    const oldState = {
+      results: ['1'],
+      saved: ['2']
+}
+    const newState = {
+      results: ['3'],
+      saved: ['1']
+    }
+    Reducer(listByColumn).withState(oldState).expect(action).toReturnState(newState);
+   })
 
 })

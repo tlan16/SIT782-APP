@@ -18,7 +18,6 @@ const byId = (state = {}, action = {}) => {
               return acc;
           }, {})
           return {
-            ...state,
             ...savedObject,
             ...resultsObject
           }
