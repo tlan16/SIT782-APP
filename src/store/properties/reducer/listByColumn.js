@@ -1,4 +1,4 @@
-import { PROPERTIES_FETCHED, ADD_TO_SAVED, REMOVE_FROM_SAVED } from "../../actionTypes";
+import { PROPERTIES_FETCHED, ADD_TO_SAVED, REMOVE_FROM_SAVED } from "../actionTypes";
 
 const initialState = {
   results: [],

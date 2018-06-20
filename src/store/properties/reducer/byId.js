@@ -1,4 +1,4 @@
-import  { PROPERTIES_FETCHED } from '../../actionTypes'
+import  { PROPERTIES_FETCHED } from '../actionTypes'
 
 const byId = (state = {}, action = {}) => {
      switch(action.type){
