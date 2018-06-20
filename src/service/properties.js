@@ -9,6 +9,9 @@ const properties = () => {
          Accept: 'application/json'
        }
      });
+     if(!response.ok){
+       throw new Error(`PropertyService getProperties failed, HTTP status ${response.status}`)
+     }
      const data = await response.json();
      return data   
   }

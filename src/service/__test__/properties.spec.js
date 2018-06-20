@@ -13,4 +13,15 @@ describe('service/properties', () => {
     const response = await properties.getProperties();
     expect(Object.keys(response).sort()).toEqual(['results', 'saved'].sort());
   })
+
+  it('handles http error', async () => {
+    fetch.mockResponse(JSON.stringify({}), { status: 500 });
+    let error;
+    try{
+      await properties.getProperties();
+    }catch(e){
+      error = e;
+    }
+    expect(error).toEqual(new Error('PropertyService getProperties failed, HTTP status 500'))
+  })
 })
