@@ -1,5 +1,5 @@
-import properties from '../properties';
-import defaultProperties from './defaultProperties';
+import searchResponse from '../searchResponse';
+import defaultResponse from './defaultResponse';
 import fetchMock from 'jest-fetch-mock';
 global.fetch = fetchMock;
 
@@ -9,9 +9,9 @@ describe('service/properties', () => {
     jest.resetAllMocks();
   });
 
-  it('gets default properties with keys resaults and saved', async () => {
-    fetch.mockResponse(JSON.stringify(defaultProperties));
-    const response = await properties.getProperties();
+  it('gets default searchResponse with keys resaults and saved', async () => {
+    fetch.mockResponse(JSON.stringify(defaultResponse));
+    const response = await searchResponse.getSearchResponse();
     expect(Object.keys(response).sort()).toEqual(['results', 'saved'].sort());
   })
 
@@ -19,7 +19,7 @@ describe('service/properties', () => {
     fetch.mockResponse(JSON.stringify({}), { status: 500 });
     let error;
     try{
-      await properties.getProperties();
+      await searchResponse.getSearchResponse();
     }catch(e){
       error = e;
     }

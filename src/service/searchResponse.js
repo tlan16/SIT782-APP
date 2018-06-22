@@ -1,8 +1,8 @@
 const APIENDPOINT = ''
 
-const properties = () => {
+const searchResponse = () => {
   
- async function getProperties() {
+ async function getSearchResponse() {
      const response = await fetch(APIENDPOINT, {
        method: 'GET',
        headers: {
@@ -16,8 +16,8 @@ const properties = () => {
      return data   
   }
    return {
-     getProperties
+     getSearchResponse
    }
 }
 
-export default properties()
+export default searchResponse()
