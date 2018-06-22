@@ -4,7 +4,7 @@ import { fetchProperties } from '../../actions/property';
 import propertyService from '../../../../service/properties';
 import { normalize } from 'normalizr';
 import * as schema from '../../../../schema';
-
+import defaultResponse from './defaultResponse';
 jest.mock('../../../../service/properties');
 
 describe('store/properties/actions', () => {
@@ -14,13 +14,10 @@ describe('store/properties/actions', () => {
   });
 
   it('fetch properties from server', async () => {
-    const defaultResponse = require('./defaultResponse.json');
     propertyService.getProperties.mockReturnValueOnce(defaultResponse);
     const dispatches = await Thunk(fetchProperties).execute();
-    const resultsArray = normalize(defaultResponse.results, schema.arrayOfProperties);
-    const savedArray = normalize(defaultResponse.saved, schema.arrayOfProperties);
-    expect(dispatches.length).toBe(1);
+    const response = normalize(defaultResponse, schema.responseSchema);
     expect(dispatches[0].isPlainObject()).toBe(true);
-    expect(dispatches[0].getAction()).toEqual({ type: PROPERTIES_FETCHED, resultsArray, savedArray });
+    expect(dispatches[0].getAction()).toEqual({ type: PROPERTIES_FETCHED, response });
   })
 })
