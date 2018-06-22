@@ -1,4 +1,3 @@
-import  { PROPERTIES_FETCHED } from '../actionTypes'
 import { combineReducers } from "redux";
 import byId, * as fromById from './byId';
 import listByColumn, * as fromListByColumn from './listByColumn';

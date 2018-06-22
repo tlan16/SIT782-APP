@@ -39,10 +39,6 @@ const sampleResponse1 = {
   saved: [property1]
 }
 
-const sampleResponse2 = {
-  results: [property1, property3],
-  saved: [property1]
-}
 
 describe('store/properties/reducer/listByColumn', () => {
   it('should have initial state', () => {
@@ -54,22 +50,21 @@ describe('store/properties/reducer/listByColumn', () => {
   })
 
   it('should store fectched properties in a list of ids', () => {
-    const response = sampleResponse;
-    const savedArray = response.saved;
-    const resultsArray = response.results;
-    const action = { type: PROPERTIES_FETCHED, savedArray, resultsArray };
+    const lists = {saved: [1,3], results: [2]}
+    const action = { type: PROPERTIES_FETCHED, lists };
     const returnState = {
-          results: ['1'],
-          saved: ['2']
+          saved: [1,3],
+          results: [2]
   }
     Reducer(listByColumn).expect(action).toReturnState(returnState)
   })
 
   it('should store fetched properties and override existing properties in both lists', () => {
-    const response = sampleResponse1;
-    const savedArray = response.saved;
-    const resultsArray = response.results;
-    const action = { type: PROPERTIES_FETCHED, savedArray, resultsArray };
+    const lists = {
+      results: ['3'],
+      saved: ['1']
+    }
+    const action = { type: PROPERTIES_FETCHED, lists };
     const oldState = Immutable({
       results: ['1'],
       saved: ['2']

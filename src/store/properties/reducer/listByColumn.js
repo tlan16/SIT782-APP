@@ -7,13 +7,8 @@ const initialState = {
 const listByColumn = ( state = initialState, action = {} ) => {
    switch( action.type ){
      case PROPERTIES_FETCHED:
-          const resultsArray = action.resultsArray;
-          const savedArray = action.savedArray; 
-          return {
-            results: resultsArray.map( property => property.id ),
-            saved: savedArray.map( property => property.id )
-          }
-
+          return action.lists
+          
      case ADD_TO_SAVED:
           const idToAdd = action.id;
           return {
