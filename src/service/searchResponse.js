@@ -10,7 +10,7 @@ const searchResponse = () => {
        }
      });
      if(!response.ok){
-       throw new Error(`PropertyService getProperties failed, HTTP status ${response.status}`)
+       throw new Error(`searchResponse getSearchResponse failed, HTTP status ${response.status}`)
      }
      const data = await response.json();
      return data   

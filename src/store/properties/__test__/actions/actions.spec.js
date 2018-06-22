@@ -1,11 +1,11 @@
 import { Thunk } from 'redux-testkit';
 import { PROPERTIES_FETCHED } from '../../actionTypes';
 import { fetchProperties } from '../../actions/property';
-import propertyService from '../../../../service/properties';
+import searchResponse from '../../../../service/searchResponse';
 import { normalize } from 'normalizr';
 import * as schema from '../../../../schema';
 import defaultResponse from './defaultResponse';
-jest.mock('../../../../service/properties');
+jest.mock('../../../../service/searchResponse');
 
 describe('store/properties/actions', () => {
 
@@ -14,7 +14,7 @@ describe('store/properties/actions', () => {
   });
 
   it('fetch properties from server', async () => {
-    propertyService.getProperties.mockReturnValueOnce(defaultResponse);
+    searchResponse.getSearchResponse.mockReturnValueOnce(defaultResponse);
     const dispatches = await Thunk(fetchProperties).execute();
     const response = normalize(defaultResponse, schema.responseSchema);
     expect(dispatches[0].isPlainObject()).toBe(true);

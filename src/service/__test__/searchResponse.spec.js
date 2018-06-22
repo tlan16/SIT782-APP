@@ -23,6 +23,6 @@ describe('service/properties', () => {
     }catch(e){
       error = e;
     }
-    expect(error).toEqual(new Error('PropertyService getProperties failed, HTTP status 500'))
+    expect(error).toEqual(new Error('searchResponse getSearchResponse failed, HTTP status 500'))
   })
 })
