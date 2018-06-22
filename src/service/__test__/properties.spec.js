@@ -1,5 +1,7 @@
 import properties from '../properties';
-global.fetch = require('jest-fetch-mock');
+import defaultProperties from './defaultProperties';
+import fetchMock from 'jest-fetch-mock';
+global.fetch = fetchMock;
 
 describe('service/properties', () => {
 
@@ -8,7 +10,6 @@ describe('service/properties', () => {
   });
 
   it('gets default properties with keys resaults and saved', async () => {
-    const defaultProperties = require('./defaultProperties.json');
     fetch.mockResponse(JSON.stringify(defaultProperties));
     const response = await properties.getProperties();
     expect(Object.keys(response).sort()).toEqual(['results', 'saved'].sort());
