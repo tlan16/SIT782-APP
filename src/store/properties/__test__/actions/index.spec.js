@@ -1,6 +1,6 @@
 import { Thunk } from 'redux-testkit';
 import { PROPERTIES_FETCHED } from '../../actionTypes';
-import { fetchProperties } from '../../actions/property';
+import { fetchSearchResponse } from '../../actions/index';
 import searchResponse from '../../../../service/searchResponse';
 import { normalize } from 'normalizr';
 import * as schema from '../../../../schema';
@@ -15,9 +15,12 @@ describe('store/properties/actions', () => {
 
   it('fetch properties from server', async () => {
     searchResponse.getSearchResponse.mockReturnValueOnce(defaultResponse);
-    const dispatches = await Thunk(fetchProperties).execute();
+    const dispatches = await Thunk(fetchSearchResponse).execute();
     const response = normalize(defaultResponse, schema.responseSchema);
+    const entities = response.entities;
+    const lists = response.result;
+    const properties = entities.properties;
     expect(dispatches[0].isPlainObject()).toBe(true);
-    expect(dispatches[0].getAction()).toEqual({ type: PROPERTIES_FETCHED, response });
+    expect(dispatches[0].getAction()).toEqual({ type: PROPERTIES_FETCHED, properties, lists });
   })
 })
