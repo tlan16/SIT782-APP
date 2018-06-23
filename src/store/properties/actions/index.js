@@ -10,11 +10,13 @@ export const fetchSearchResponse = () => {
      const response = normalize(responseData, schema.responseSchema);
      const entities = response.entities;
      const properties = entities.properties;
+     const agencies = entities.agencies;
      const lists = response.result;
      dispatch({ 
        type: PROPERTIES_FETCHED,
        properties,
-       lists
+       lists,
+       agencies
       })
     }catch(error){
       console.error(error);

@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 import byId, * as fromById from './byId';
 import listByColumn, * as fromListByColumn from './listByColumn';
+import agency, * as fromAgency from './agency';
 
 const properties = combineReducers({
   byId,
-  listByColumn
+  listByColumn,
+  agency
 })
 
 export default properties;
@@ -19,4 +21,8 @@ export const getSavedProperties = (state) => {
 
 export const getResultsProperties = (state) => {
   return fromListByColumn.getResultsProperties(state.listByColumn)
+}
+
+export const getAgency = (state, logo) => {
+  return fromAgency.getAgency(state.agency, logo)
 }

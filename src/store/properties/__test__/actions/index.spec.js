@@ -20,8 +20,9 @@ describe('store/properties/actions', () => {
     const entities = response.entities;
     const lists = response.result;
     const properties = entities.properties;
+    const agencies = entities.agencies
     expect(dispatches[0].isPlainObject()).toBe(true);
-    expect(dispatches[0].getAction()).toEqual({ type: PROPERTIES_FETCHED, properties, lists });
+    expect(dispatches[0].getAction()).toEqual({ type: PROPERTIES_FETCHED, properties, lists , agencies});
   })
 
   it('fetch properties from server', async () => {

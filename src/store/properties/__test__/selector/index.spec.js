@@ -1,14 +1,7 @@
-import Immutable from 'seamless-immutable';
 import { Selector } from 'redux-testkit';
-import { getById, getSavedProperties, getResultsProperties } from '../../reducer';
+import { getById, getSavedProperties, getResultsProperties, getAgency } from '../../reducer';
 
-const initialState = {
-  byId: {},
-  listByColumn: {
-    results: [],
-    saved:[]
-  }
-}
+
 
 const property1 = {
   price: 'price1',
@@ -22,6 +15,10 @@ const property2 = {
   agency: 'agency2',
   id: '2',
   mainImage: 'image2'
+}
+
+const agency1 = {
+  logo: 'logo1',
 }
 
 describe('getById store/properties/reducer/index', () => {
@@ -75,4 +72,14 @@ describe('getResultsProperties store/properties/index', () => {
     const results = state.listByColumn.results;
     Selector(getResultsProperties).expect(state).toReturn(results); 
   })
+
+describe('getAgency store/properties/index', () => {
+  const state = {
+     agency: {
+       'logo1': agency1
+     }
+  }
+  const logo = 'logo1'
+  Selector(getAgency).expect(state, logo).toReturn(agency1)
+})
 })
