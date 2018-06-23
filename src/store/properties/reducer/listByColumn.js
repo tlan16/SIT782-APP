@@ -1,14 +1,15 @@
 import { PROPERTIES_FETCHED, ADD_TO_SAVED, REMOVE_FROM_SAVED } from "../actionTypes";
+import Immutable from 'seamless-immutable';
 
-const initialState = {
+const initialState = Immutable({
   results: [],
   saved:[]
-}
+})
 const listByColumn = ( state = initialState, action = {} ) => {
    switch( action.type ){
      case PROPERTIES_FETCHED:
           return action.lists
-          
+
      case ADD_TO_SAVED:
           const idToAdd = action.id;
           return {
