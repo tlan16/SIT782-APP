@@ -23,4 +23,12 @@ describe('store/properties/actions', () => {
     expect(dispatches[0].isPlainObject()).toBe(true);
     expect(dispatches[0].getAction()).toEqual({ type: PROPERTIES_FETCHED, properties, lists });
   })
+
+  it('fetch properties from server', async () => {
+    searchResponse.getSearchResponse.mockImplementationOnce(() => { throw new Error('something is wrong');});
+    console.error = jest.fn();
+    const dispatches = await Thunk(fetchSearchResponse).execute();
+    expect(dispatches.length).toBe(0);
+    expect(console.error).toHaveBeenCalledWith(Error('something is wrong'))
+  })
 })
