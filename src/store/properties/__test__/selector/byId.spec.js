@@ -1,4 +1,3 @@
-import Immutable from 'seamless-immutable';
 import { Selector } from 'redux-testkit';
 import { getById } from '../../reducer/byId';
 
