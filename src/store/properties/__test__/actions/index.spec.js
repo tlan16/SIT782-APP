@@ -1,13 +1,13 @@
 import { Thunk } from 'redux-testkit';
-import { PROPERTIES_FETCHED } from '../../actionTypes';
-import { fetchSearchResponse } from '../../actions/index';
+import { PROPERTIES_FETCHED, ADD_TO_SAVED, REMOVE_FROM_SAVED } from '../../actionTypes';
+import { fetchSearchResponse, addToSaved, removeFromSaved } from '../../actions/index';
 import searchResponse from '../../../../service/searchResponse';
 import { normalize } from 'normalizr';
 import * as schema from '../../../../schema';
 import defaultResponse from './defaultResponse';
 jest.mock('../../../../service/searchResponse');
 
-describe('store/properties/actions', () => {
+describe('store/properties/actions fetchSearchResponse', () => {
 
   beforeEach(() => {
     jest.resetAllMocks();
@@ -33,3 +33,25 @@ describe('store/properties/actions', () => {
     expect(console.error).toHaveBeenCalledWith(Error('something is wrong'))
   })
 })
+
+describe('store/properties/actions addToSaved', () => {
+  it('add property to saved list', () => {
+    const id = 1;
+    const dispatches = Thunk(addToSaved).execute(id);
+    expect(dispatches[0].isPlainObject()).toBe(true);
+    expect(dispatches[0].getAction()).toEqual({ type: ADD_TO_SAVED, id});
+  })
+})
+
+describe('store/properties/actions removeFromSaved', () => {
+  it('remove a property from saved list', () => {
+    const id = 1;
+    const dispatches = Thunk(removeFromSaved).execute(id);
+    expect(dispatches[0].isPlainObject()).toBe(true);
+    expect(dispatches[0].getAction()).toEqual({ type: REMOVE_FROM_SAVED, id});
+  })
+})
+
+
+
+

@@ -1,7 +1,7 @@
 import searchResponse from '../../../service/searchResponse';
 import * as schema from '../../../schema';
 import { normalize } from 'normalizr';
-import { PROPERTIES_FETCHED } from '../actionTypes';
+import { PROPERTIES_FETCHED, ADD_TO_SAVED, REMOVE_FROM_SAVED } from '../actionTypes';
 
 export const fetchSearchResponse = () => {
   return async(dispatch, getState) => {
@@ -22,4 +22,18 @@ export const fetchSearchResponse = () => {
       console.error(error);
     }
   }
+}
+
+export const addToSaved = (id) => (dispatch, getState) => {
+     dispatch({
+       type: ADD_TO_SAVED,
+       id
+     })
+}
+
+export const removeFromSaved = (id) => (dispatch, getState) => {
+     dispatch({
+       type: REMOVE_FROM_SAVED,
+       id
+     })
 }
