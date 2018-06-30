@@ -8,7 +8,7 @@ class PropertyItem extends React.Component {
   render() {
     const { id, onClick, isAdd } = this.props;
     return (<div>
-      <p1>id</p1>
+      <h1>id</h1>
       <button onClick = {() => { onClick(id) }}>{isAdd? 'Add': 'Delete'}</button>
     </div>)
   }
