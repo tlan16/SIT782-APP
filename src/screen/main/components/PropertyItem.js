@@ -8,14 +8,14 @@ class PropertyItem extends React.Component {
   render() {
     const { id, onClick, isAdd } = this.props;
     return (<div>
-      <h1>id</h1>
+      <h1>{id}</h1>
       <button onClick = {() => { onClick(id) }}>{isAdd? 'Add': 'Delete'}</button>
     </div>)
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-     return ownProps.isAdd? { onClick: addToSaved} : { onClick: removeFromSaved }
+     return ownProps.isAdd? { onClick: id => dispatch(addToSaved(id))} : { onClick: id => dispatch(removeFromSaved(id)) }
 }
 
 PropertyItem.propTypes = {
@@ -26,4 +26,4 @@ PropertyItem.propTypes = {
 
 export default PropertyItem
 
-export const connectedPropertyItem = connect(null, mapDispatchToProps)(PropertyItem)
+export const ConnectedPropertyItem = connect(null, mapDispatchToProps)(PropertyItem)
