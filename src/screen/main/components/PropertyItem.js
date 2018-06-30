@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addToSaved, removeFromSaved } from '../store/properties/actions'
+import { addToSaved, removeFromSaved } from '../../../store/properties/actions'
 
 class PropertyItem extends React.Component {
 
