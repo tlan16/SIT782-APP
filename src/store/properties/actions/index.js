@@ -24,12 +24,31 @@ export const fetchSearchResponse = () => {
   }
 }
 
-export const addToSaved = (id) => ({
-       type: ADD_TO_SAVED,
-       id
-     })
+export const addToSaved = (id) => {
+  return dispatch => {
+    dispatch({
+      type: ADD_TO_SAVED,
+      id
+    })
+  }
+}
 
-export const removeFromSaved = (id) => ({
-       type: REMOVE_FROM_SAVED,
-       id
-     })
+
+export const removeFromSaved = (id) => {
+  return dispatch => {
+    dispatch({
+      type: REMOVE_FROM_SAVED,
+      id
+    })
+  }
+}
+
+// export const addToSaved = (id) => ({
+//        type: ADD_TO_SAVED,
+//        id
+//      })
+
+// export const removeFromSaved = (id) => ({
+//        type: REMOVE_FROM_SAVED,
+//        id
+//      })

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addToSaved, removeFromSaved } from '../../../store/properties/actions'
+import { bindActionCreators } from 'redux'
 
 class PropertyItem extends React.Component {
 
@@ -14,9 +15,16 @@ class PropertyItem extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-     return ownProps.isAdd? { onClick: id => dispatch(addToSaved(id))} : { onClick: id => dispatch(removeFromSaved(id)) }
-}
+//const mapDispatchToProps = (dispatch, ownProps) => {
+    //  return ownProps.isAdd? { onClick:  (id) => { dispatch((dispatch, getState) => { dispatch(addToSaved(id))})}} 
+    //  : { onClick: (id) => { dispatch((dispatch, getState) => {dispatch(removeFromSaved(id))})} }
+//}
+
+const mapDispatchToProps = (dispatch, ownProps) => bindActionCreators({
+  onClick: ownProps.isAdd? 
+    addToSaved
+  : removeFromSaved
+}, dispatch)
 
 PropertyItem.propTypes = {
   id: PropTypes.string.isRequired,
