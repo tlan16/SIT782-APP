@@ -13,8 +13,6 @@ class MainScreen extends React.Component{
     }
     render(){
       const { saved, results } = this.props;
-      console.log(saved)
-      console.log(results)
       return(
         <Grid>
           <Row>
