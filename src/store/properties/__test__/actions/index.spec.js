@@ -35,18 +35,20 @@ describe('store/properties/actions fetchSearchResponse', () => {
 })
 
 describe('store/properties/actions addToSaved', () => {
-  it('add property to saved list', () => {
-    const id = 1;
-    const dispatches = Thunk(addToSaved).execute(id);
+  it('add property to saved list', async () => {
+    searchResponse.addToSavedService.mockReturnValueOnce('1')
+    const id = '1';
+    const dispatches = await Thunk(addToSaved).execute(id);
     expect(dispatches[0].isPlainObject()).toBe(true);
     expect(dispatches[0].getAction()).toEqual({ type: ADD_TO_SAVED, id});
   })
 })
 
-describe('store/properties/actions removeFromSaved', () => {
-  it('remove a property from saved list', () => {
-    const id = 1;
-    const dispatches = Thunk(removeFromSaved).execute(id);
+describe('store/properties/actions removeFromSaved',  () => {
+  it('remove a property from saved list', async () => {
+    const id = '1';
+    searchResponse.removeFromSavedService.mockReturnValueOnce('1')
+    const dispatches = await Thunk(removeFromSaved).execute(id);
     expect(dispatches[0].isPlainObject()).toBe(true);
     expect(dispatches[0].getAction()).toEqual({ type: REMOVE_FROM_SAVED, id});
   })

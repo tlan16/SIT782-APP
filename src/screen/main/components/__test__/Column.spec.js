@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Column from '../Column';
-import PropertyItem from '../PropertyItem';
+import {  ConnectedPropertyItem } from '../PropertyItem';
 import Adapter from 'enzyme-adapter-react-16';
 import { configure } from 'enzyme';
 
@@ -12,6 +12,6 @@ describe('components/Column', () => {
        const ids = ['1','2'];
        const isAdd = true;
        const wrapper = shallow(<Column ids = {ids} isAdd = {isAdd}/>);
-       expect(wrapper.find(PropertyItem).length).toBe(2);
+       expect(wrapper.find(ConnectedPropertyItem).length).toBe(2);
      })
 })

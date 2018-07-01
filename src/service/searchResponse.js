@@ -40,7 +40,7 @@ const searchResponse = () => {
       return addId;
   }
 
-  async function removeFromSavedService() {
+  async function removeFromSavedService(id) {
     if(process.env.NODE_ENV === 'development'){
       return id
     }

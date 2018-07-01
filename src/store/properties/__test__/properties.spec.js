@@ -23,10 +23,13 @@ describe('store/properties integration', () => {
     await store.dispatch(fetchSearchResponse());
     expect(getSavedProperties(store.getState())).toEqual(['4']);
     expect(getResultsProperties(store.getState())).toEqual(['1', '2', '3']);
-
-    store.dispatch(addToSaved('1'));
+    
+    searchResponse.addToSavedService.mockReturnValueOnce('1')
+    await store.dispatch(addToSaved('1'));
     expect(getSavedProperties(store.getState())).toEqual(['4','1']);
-    store.dispatch(removeFromSaved('1'));
+
+    searchResponse.removeFromSavedService.mockReturnValueOnce('1')
+    await store.dispatch(removeFromSaved('1'));
     expect(getSavedProperties(store.getState())).toEqual(['4']);
   }) 
 })
