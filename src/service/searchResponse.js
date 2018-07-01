@@ -1,5 +1,5 @@
 import fakeResponse from './defaultResponse';
-const APIENDPOINT = ''
+const APIENDPOINT = process.env.APIENDPOINT;
 const searchResponse = () => {
   
  async function getSearchResponse() {
@@ -18,8 +18,53 @@ const searchResponse = () => {
      const data = await response.json();
      return data   
   }
+
+  async function addToSavedService(id) {
+    if(process.env.NODE_ENV === 'development'){
+      return id
+    }
+      const sendData = {
+        id,
+        type: 'addToSaved'
+      }
+      const response = await fetch(APIENDPOINT, {
+        body: JSON.stringify(sendData),
+        credentials: 'same-origin',
+        method: 'POST'
+      })
+      if(!response.ok){
+        throw new Error(`addToSavedResponse addToSavedService failed, HTTP status ${response.status}`)
+      }
+      const responseData = await response.json();
+      const addId = responseData.addId;
+      return addId;
+  }
+
+  async function removeFromSavedService() {
+    if(process.env.NODE_ENV === 'development'){
+      return id
+    }
+    const sendData = {
+      id,
+      type: 'removeFromSaved'
+    }
+    const response = await fetch(APIENDPOINT, {
+      body: JSON.stringify(sendData),
+      credentials: 'same-origin',
+      method: 'POST'
+    })
+    if(!response.ok){
+      throw new Error(`removeFromSavedResponse removeFromSavedService failed, HTTP status ${response.status}`)
+    }
+    const responseData = await response.json();
+    const removeId = responseData.removeId;
+    return removeId;
+  }
+
    return {
-     getSearchResponse
+     getSearchResponse,
+     addToSavedService,
+     removeFromSavedService
    }
 }
 
