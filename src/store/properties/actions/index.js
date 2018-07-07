@@ -1,11 +1,18 @@
 import searchResponse from '../../../service/searchResponse';
 import * as schema from '../../../schema';
 import { normalize } from 'normalizr';
-import { PROPERTIES_FETCHED, ADD_TO_SAVED, REMOVE_FROM_SAVED } from '../actionTypes';
+import { PROPERTIES_FETCHED, FETCHPROPERTY_REQUEST, ADD_TO_SAVED, REMOVE_FROM_SAVED, FETCHPROPERTY_FAILURE } from '../actionTypes';
+import { getIsFetching } from '../reducer'
 
 export const fetchSearchResponse = () => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
      try{
+     if(getIsFetching(getState())){
+       return 
+     }
+     dispatch({
+       type: FETCHPROPERTY_REQUEST
+     })
      const responseData = await searchResponse.getSearchResponse();
      const response = normalize(responseData, schema.responseSchema);
      const entities = response.entities;
@@ -20,6 +27,10 @@ export const fetchSearchResponse = () => {
       })
     }catch(error){
       console.error(error);
+      dispatch({
+        type: FETCHPROPERTY_FAILURE,
+        message: error.message || 'Something is wrong!'
+      })
     }
   }
 }

@@ -2,8 +2,12 @@ import fakeResponse from './defaultResponse';
 const APIENDPOINT = process.env.APIENDPOINT;
 const searchResponse = () => {
   
+  const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
  async function getSearchResponse() {
      if(process.env.NODE_ENV === 'development'){
+       await delay(500);
+       if(Math.random()>0.5) throw new Error('Boom!')
        return fakeResponse
      }
      const response = await fetch(APIENDPOINT, {

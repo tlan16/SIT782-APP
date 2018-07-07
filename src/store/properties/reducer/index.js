@@ -23,6 +23,14 @@ export const getResultsProperties = (state) => {
   return fromListByColumn.getResultsProperties(state.listByColumn)
 }
 
+export const getErrorMessage = (state) => {
+  return fromListByColumn.getErrorMessage(state.listByColumn)
+}
+
+export const getIsFetching = (state) => {
+  return fromListByColumn.getIsFetching(state.listByColumn)
+}
+
 export const getAgency = (state, logo) => {
   return fromAgency.getAgency(state.agency, logo)
 }

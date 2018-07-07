@@ -1,16 +1,19 @@
+import { combineReducers } from 'redux';
 import {
   PROPERTIES_FETCHED,
   ADD_TO_SAVED,
-  REMOVE_FROM_SAVED
+  REMOVE_FROM_SAVED,
+  FETCHPROPERTY_REQUEST,
+  FETCHPROPERTY_FAILURE
 } from "../actionTypes";
 import Immutable from "seamless-immutable";
 
-const initialState = Immutable({
+const listsInitialState = Immutable({
   results: [],
   saved: []
 });
 
-const listByColumn = (state = initialState, action = {}) => {
+const lists = (state = listsInitialState, action = {}) => {
   switch (action.type) {
     case PROPERTIES_FETCHED:
       return action.lists;
@@ -40,11 +43,52 @@ const listByColumn = (state = initialState, action = {}) => {
       return state;
   }
 };
+
+const isFetching = ( state = false, action) => {
+   switch(action.type) {
+     case FETCHPROPERTY_REQUEST:
+        return true;
+     case PROPERTIES_FETCHED:
+        return false;
+     case FETCHPROPERTY_FAILURE:
+        return false;
+     default:
+        return state;
+   }
+}
+
+const errorMessage = (state = null, action) => {
+    switch(action.type){
+      case FETCHPROPERTY_FAILURE:
+        return action.message;
+      case FETCHPROPERTY_REQUEST:
+      case PROPERTIES_FETCHED:
+          return null;
+      default:
+          return state;
+    }
+}
+
+const listByColumn = combineReducers({
+  lists,
+  isFetching,
+  errorMessage
+})
+
 export default listByColumn;
 
 export const getSavedProperties = state => {
-  return state.saved;
+  return state.lists.saved;
 };
+
 export const getResultsProperties = state => {
-  return state.results;
+  return state.lists.results;
+};
+
+export const getIsFetching = state => {
+  return state.isFetching;
+};
+
+export const getErrorMessage = state => {
+  return state.errorMessage;
 };
