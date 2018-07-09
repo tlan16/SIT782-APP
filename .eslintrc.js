@@ -2,10 +2,12 @@ module.exports = {
     "env": {
         "browser": true,
         "es6": true,
-        "jasmine": true
+        "jasmine": true,
+        "jest": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
+        "ecmaVersion": 8,
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
             "jsx": true
@@ -32,6 +34,7 @@ module.exports = {
             "error",
             "always"
         ],
-        "react/jsx-uses-vars": [2]
+        "react/jsx-uses-vars": [2],  
+        "no-console": 0
     }
 };
