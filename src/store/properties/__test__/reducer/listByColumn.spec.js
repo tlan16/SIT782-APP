@@ -1,70 +1,40 @@
-import listByColumn from '../../reducer/listByColumn';
+import listByColumn, {lists}  from '../../reducer/listByColumn';
 import { Reducer } from 'redux-testkit';
 import { PROPERTIES_FETCHED, ADD_TO_SAVED, REMOVE_FROM_SAVED } from '../../actionTypes';
 import Immutable from 'seamless-immutable';
 
 const initialState = {
-  results: [],
-  saved:[]
+  errorMessage: null,
+  isFetching: false,
+  lists:{results: [],
+  saved:[]}
 }
-
-const property1 = {
-  price: 'price1',
-  agency: 'agency1',
-  id: '1',
-  mainImage: 'image1'
-}
-
-const property2 = {
-  price: 'price2',
-  agency: 'agency2',
-  id: '2',
-  mainImage: 'image2'
-}
-
-const property3 = {
-  price: 'price3',
-  agency: 'agency3',
-  id: '3',
-  mainImage: 'image3'
-}
-
-const sampleResponse = {
-  results: [property1],
-  saved: [property2]
-}
-
-const sampleResponse1 = {
-  results: [property3],
-  saved: [property1]
-}
-
 
 describe('store/properties/reducer/listByColumn', () => {
-  it('should have initial state', () => {
+  it('has initial state', () => {
     expect(listByColumn()).toEqual(initialState);
   });
 
-  it('should not affect state', () => {
+  it('does not affect state', () => {
     Reducer(listByColumn).expect({type: 'NOT_EXISTING'}).toReturnState(initialState);
   })
 
-  it('should store fectched properties in a list of ids', () => {
-    const lists = {saved: [1,3], results: [2]}
-    const action = { type: PROPERTIES_FETCHED, lists };
-    const returnState = {
-          saved: [1,3],
-          results: [2]
-  }
-    Reducer(listByColumn).expect(action).toReturnState(returnState)
+})
+
+describe('list store/properties/reducer/listByColumn', () => {
+  it('stores fectched properties in a list of ids', () => {
+    const fetchedLists = {saved: [1,3], results: [2]}
+    const action = { type: PROPERTIES_FETCHED, lists: fetchedLists };
+    const returnState =  {results: [2], saved: [1, 3]};
+    Reducer(lists).expect(action).toReturnState(returnState)
   })
 
-  it('should store fetched properties and override existing properties in both lists', () => {
-    const lists = {
+  it('stores fetched properties and override existing properties in both lists', () => {
+    const fetchedLists = {
       results: ['3'],
       saved: ['1']
     }
-    const action = { type: PROPERTIES_FETCHED, lists };
+    const action = { type: PROPERTIES_FETCHED, lists: fetchedLists };
     const oldState = Immutable({
       results: ['1'],
       saved: ['2']
@@ -73,7 +43,7 @@ describe('store/properties/reducer/listByColumn', () => {
       results: ['3'],
       saved: ['1']
     }
-    Reducer(listByColumn).withState(oldState).expect(action).toReturnState(newState);
+    Reducer(lists).withState(oldState).expect(action).toReturnState(newState);
    })
 
    it('add the id to savedList when adding to saved ', () => {
@@ -87,7 +57,7 @@ describe('store/properties/reducer/listByColumn', () => {
         results: ['1'],
         saved: ['2', '1']
       }  
-      Reducer(listByColumn).withState(oldState).expect(action).toReturnState(newState);
+      Reducer(lists).withState(oldState).expect(action).toReturnState(newState);
    })
 
    it('remove the id from savedList when removing to saved', () => {
@@ -101,7 +71,7 @@ describe('store/properties/reducer/listByColumn', () => {
        results: ['1'],
        saved: []
      }
-     Reducer(listByColumn).withState(oldState).expect(action).toReturnState(newState);
+     Reducer(lists).withState(oldState).expect(action).toReturnState(newState);
    })
 
    it('returns the old state if the property to remove does not exist', () => {
@@ -111,7 +81,6 @@ describe('store/properties/reducer/listByColumn', () => {
      results: ['1'],
      saved: ['2']
       })
-    Reducer(listByColumn).withState(oldState).expect(action).toReturnState(oldState);
+    Reducer(lists).withState(oldState).expect(action).toReturnState(oldState);
    })
-
 })

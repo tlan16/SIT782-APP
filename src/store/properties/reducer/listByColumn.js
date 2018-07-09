@@ -13,7 +13,7 @@ const listsInitialState = Immutable({
   saved: []
 });
 
-const lists = (state = listsInitialState, action = {}) => {
+export const lists = (state = listsInitialState, action = {}) => {
   switch (action.type) {
     case PROPERTIES_FETCHED:
       return action.lists;
@@ -44,7 +44,7 @@ const lists = (state = listsInitialState, action = {}) => {
   }
 };
 
-const isFetching = ( state = false, action) => {
+export const isFetching = ( state = false, action = {}) => {
    switch(action.type) {
      case FETCHPROPERTY_REQUEST:
         return true;
@@ -57,7 +57,7 @@ const isFetching = ( state = false, action) => {
    }
 }
 
-const errorMessage = (state = null, action) => {
+export const errorMessage = (state = null, action = {}) => {
     switch(action.type){
       case FETCHPROPERTY_FAILURE:
         return action.message;

@@ -7,7 +7,6 @@ import { bindActionCreators } from "redux";
 import { Panel } from "react-bootstrap";
 import styles from "./css/PropertyItem.css";
 
-
 class PropertyItem extends React.Component {
   render() {
     const { id, onClick, isAdd, agency, property } = this.props;

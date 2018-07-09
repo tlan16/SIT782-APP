@@ -1,38 +1,28 @@
-import properties from '../../reducer/';
-import { Reducer } from 'redux-testkit';
+import properties from "../../reducer/";
+import { Reducer } from "redux-testkit";
 
 const initialState = {
   byId: {},
   listByColumn: {
-    results: [],
-    saved:[]
+    errorMessage: null,
+    isFetching: false,
+    lists: {
+      results: [],
+      saved: []
+    }
   },
   agency: {}
-}
-
-const property1 = {
-  price: 'price1',
-  agency: 'agency1',
-  id: '1',
-  mainImage: 'image1'
-}
-
-const property2 = {
-  price: 'price2',
-  agency: 'agency2',
-  id: '2',
-  mainImage: 'image2'
-}
+};
 
 
-
-describe('store/properties/reducer/index', () => {
-  it('should have initial state', () => {
+describe("store/properties/reducer/index", () => {
+  it("should have initial state", () => {
     expect(properties()).toEqual(initialState);
   });
 
-  it('should not affect state', () => {
-    Reducer(properties).expect({type: 'NOT_EXISTING'}).toReturnState(initialState);
-  })
-
-})
+  it("should not affect state", () => {
+    Reducer(properties)
+      .expect({ type: "NOT_EXISTING" })
+      .toReturnState(initialState);
+  });
+});

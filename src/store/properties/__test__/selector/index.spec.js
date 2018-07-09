@@ -48,11 +48,15 @@ describe('getSavedProperties store/properties/reducer/index', () => {
         '2': property2
       },
       listByColumn: {
-        saved: [1,2],
+        errorMessage: null,
+        isFetching: false,
+        lists:{
+          saved: [1,2],
         results: [1]
+        }
       }
     }  
-    const saved = state.listByColumn.saved;
+    const saved = state.listByColumn.lists.saved;
     Selector(getSavedProperties).expect(state).toReturn(saved);
    })
 })
@@ -65,11 +69,15 @@ describe('getResultsProperties store/properties/index', () => {
         '2': property2
       },
       listByColumn: {
-        saved: [1,2],
+        errorMessage: null,
+        isFetching: false,
+        lists:{
+          saved: [1,2],
         results: [1]
+        }
       }
     } 
-    const results = state.listByColumn.results;
+    const results = state.listByColumn.lists.results;
     Selector(getResultsProperties).expect(state).toReturn(results); 
   })
 
