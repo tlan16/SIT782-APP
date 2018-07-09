@@ -1,7 +1,8 @@
-{
+module.exports = {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "jasmine": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
@@ -17,19 +18,20 @@
     "rules": {
         "indent": [
             "error",
-            2
+            4
         ],
         "linebreak-style": [
             "error",
             "unix"
-        ],
+        ],                  
         "quotes": [
             "error",
             "single"
         ],
         "semi": [
-            "warning",
+            "error",
             "always"
-        ]
+        ],
+        "react/jsx-uses-vars": [2]
     }
-}
+};

@@ -1,15 +1,15 @@
-import  { PROPERTIES_FETCHED } from '../actionTypes'
+import  { PROPERTIES_FETCHED } from '../actionTypes';
 
 const agency = (state = {}, action = {}) => {
     switch(action.type){
-      case PROPERTIES_FETCHED:
+    case PROPERTIES_FETCHED:
         return action.agencies;
-      default:
+    default:
         return state;
     }
-}
+};
 export default agency;
 
 export const getAgency = (state, logo) => {
-    return state[logo]
-}
+    return state[logo];
+};
