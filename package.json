@@ -8,9 +8,16 @@
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production"
   },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest",
+      ".+\\.(css|styl|less|sass|scss)$": "./node_modules/jest-css-modules-transform"
+    }
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "jest-css-modules-transform": "^2.0.0",
     "normalizr": "^3.2.4",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
@@ -24,6 +31,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-jest": "^23.2.0",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-regenerator": "^6.26.0",
     "babel-polyfill": "^6.26.0",
