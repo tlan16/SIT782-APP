@@ -64,7 +64,7 @@ PropertyItem.propTypes = {
     id: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
     isAdd: PropTypes.bool.isRequired,
-    agency: PropTypes.object
+    agency: PropTypes.object.isRequired
 };
 
 export default PropertyItem;
