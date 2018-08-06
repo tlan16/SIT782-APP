@@ -8,12 +8,6 @@
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production"
   },
-  "jest": {
-    "transform": {
-      "^.+\\.jsx?$": "babel-jest",
-      ".+\\.(css|styl|less|sass|scss)$": "./node_modules/jest-css-modules-transform"
-    }
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
