@@ -10,6 +10,7 @@ import {
 import { getAuth } from './store/properties/reducer'
 import * as actions from './store/properties/actions'
 import LoginScreen from './screen/login'
+import ProfileScreen from './screen/profile'
 
 const Router = ({ auth = {} }) => {
   const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -33,7 +34,7 @@ const Router = ({ auth = {} }) => {
     <BrowserRouter>
       <Switch>
         <Route path="/login" component={LoginScreen} />
-        <PrivateRoute path="/profile" component={LoginScreen} />
+        <PrivateRoute path="/profile" component={ProfileScreen} />
         <Route component={LoginScreen} />
       </Switch>
     </BrowserRouter>
