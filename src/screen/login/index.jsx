@@ -9,6 +9,9 @@ import {
 } from '../../store/properties/reducer'
 import * as actions from '../../store/properties/actions'
 
+import logo from '../../../statics/theme/metronic/default/dist/default/assets/app/media/img/logos/logo-4.png'
+import leftPanelBackground from '../../../statics/theme/metronic/default/dist/default/assets/app/media/img/bg/bg-4.jpg'
+
 
 class LoginScreen extends React.Component {
   componentDidMount() {
@@ -23,13 +26,20 @@ class LoginScreen extends React.Component {
             height: '100%',
           }}
         >
-          <div className="m-grid__item   m-grid__item--order-tablet-and-mobile-2  m-grid m-grid--hor m-login__aside " style={{ backgroundImage: 'url(/statics/theme/metronic/default/dist/default/assets/app/media/img//bg/bg-4.jpg)' }}>
+          <div
+            className="m-grid__item   m-grid__item--order-tablet-and-mobile-2  m-grid m-grid--hor m-login__aside "
+            style={
+              {
+                backgroundImage: `url(${leftPanelBackground})`,
+              }
+            }
+          >
             <div className="m-grid__item">
               <div className="m-login__logo">
                 <a href="/">
                   <img
                     alt="Project A"
-                    src="/statics/theme/metronic/default/dist/default/assets/app/media/img/logos/logo-4.png"
+                    src={logo}
                   />
                 </a>
               </div>
