@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import {
   getSavedProperties,
@@ -14,9 +15,28 @@ import leftPanelBackground from '../../../statics/theme/metronic/default/dist/de
 import style from '../style.css'
 
 class LoginScreen extends React.Component {
+  constructor(props) {
+    super(props)
+    this.username = React.createRef()
+    this.password = React.createRef()
+  }
+
   componentDidMount() {
   }
+
+  signIn = (event) => {
+    event.preventDefault()
+    const username = this.username.current.value
+    const password = this.password.current.value
+
+    const { fetchAuthResponse } = this.props
+    fetchAuthResponse(username, password).then(() => {
+      this.props.history.push('/profile')
+    })
+  }
+
   render() {
+    console.log(this.props)
     return (
       (
         <div
@@ -80,10 +100,25 @@ class LoginScreen extends React.Component {
                 {/* begin::Form */}
                 <form className="m-login__form m-form">
                   <div className="form-group m-form__group">
-                    <input className="form-control m-input" type="text" placeholder="Username" name="username" autoComplete="off" />
+                    <input
+                      className="form-control m-input"
+                      type="text"
+                      placeholder="Username"
+                      name="username"
+                      autoComplete="off"
+                      defaultValue="a@b.com"
+                      ref={this.username}
+                    />
                   </div>
                   <div className="form-group m-form__group">
-                    <input className="form-control m-input m-login__form-input--last" type="password" placeholder="Password" name="password" />
+                    <input
+                      className="form-control m-input m-login__form-input--last"
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      defaultValue="12345"
+                      ref={this.password}
+                    />
                   </div>
                 </form>
                 {/* end::Form */}
@@ -93,7 +128,11 @@ class LoginScreen extends React.Component {
                     <span>Forgot Password ?</span>
                   </a>
                   <a href="/">
-                    <button id="m_login_signin_submit" className="btn btn-primary m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn m-login__btn--primary">Sign In</button>
+                    <button
+                      className="btn btn-primary m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn--primary"
+                      onClick={this.signIn}
+                    >Sign In
+                    </button>
                   </a>
                 </div>
                 {/* end::Action */}
@@ -146,7 +185,10 @@ const mapStateToProps = state => ({
   errorMessage: getErrorMessage(state),
 })
 
-export default connect(
-  mapStateToProps,
-  actions,
-)(LoginScreen)
+export default
+withRouter(
+  connect(
+    mapStateToProps,
+    actions,
+  )(LoginScreen),
+)
