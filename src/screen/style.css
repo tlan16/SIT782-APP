@@ -1,0 +1,6 @@
+.disabledLink {
+  color: currentColor;
+  cursor: not-allowed;
+  text-decoration: none;
+  pointer-events: none;
+}

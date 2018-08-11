@@ -11,7 +11,7 @@ import * as actions from '../../store/properties/actions'
 
 import logo from '../../../statics/theme/metronic/default/dist/default/assets/app/media/img/logos/logo-4.png'
 import leftPanelBackground from '../../../statics/theme/metronic/default/dist/default/assets/app/media/img/bg/bg-4.jpg'
-
+import style from '../style.css'
 
 class LoginScreen extends React.Component {
   componentDidMount() {
@@ -53,12 +53,12 @@ class LoginScreen extends React.Component {
             <div className="m-grid__item">
               <div className="m-login__info">
                 <div className="m-login__section">
-                  <a href="/" className="m-link">© 2018 Metronic</a>
+                  <a href="/" className={`m-link ${style.disabledLink}`}>© {(new Date()).getFullYear()} All Rights Reserved</a>
                 </div>
                 <div className="m-login__section">
-                  <a href="/" className="m-link">Privacy</a>
-                  <a href="/" className="m-link">Legal</a>
-                  <a href="/" className="m-link">Contact</a>
+                  <a href="/" className={`m-link ${style.disabledLink}`}>Privacy</a>
+                  <a href="/" className={`m-link ${style.disabledLink}`}>Legal</a>
+                  <a href="/" className={`m-link ${style.disabledLink}`}>Contact</a>
                 </div>
               </div>
             </div>
@@ -108,19 +108,19 @@ class LoginScreen extends React.Component {
                 {/* end::Divider */}
                 {/* begin::Options */}
                 <div className="m-login__options">
-                  <a href="/" className="btn btn-primary m-btn m-btn--pill  m-btn  m-btn m-btn--icon">
+                  <a href="/" className="btn btn-primary m-btn m-btn--pill  m-btn  m-btn m-btn--icon disabled">
                     <span>
                       <i className="fab fa-facebook-f" />
                       <span>Facebook</span>
                     </span>
                   </a>
-                  <a href="/" className="btn btn-info m-btn m-btn--pill  m-btn  m-btn m-btn--icon">
+                  <a href="/" className="btn btn-info m-btn m-btn--pill  m-btn  m-btn m-btn--icon disabled">
                     <span>
                       <i className="fab fa-twitter" />
                       <span>Twitter</span>
                     </span>
                   </a>
-                  <a href="/" className="btn btn-danger m-btn m-btn--pill  m-btn  m-btn m-btn--icon">
+                  <a href="/" className="btn btn-danger m-btn m-btn--pill  m-btn  m-btn m-btn--icon disabled">
                     <span>
                       <i className="fab fa-google" />
                       <span>Google</span>
