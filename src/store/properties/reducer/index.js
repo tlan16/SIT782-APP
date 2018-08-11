@@ -2,11 +2,13 @@ import { combineReducers } from 'redux'
 import byId, * as fromById from './byId'
 import listByColumn, * as fromListByColumn from './listByColumn'
 import agency, * as fromAgency from './agency'
+import auth, * as fromAuth from './auth'
 
 const properties = combineReducers({
   byId,
   listByColumn,
   agency,
+  auth,
 })
 
 export default properties
@@ -22,3 +24,5 @@ export const getErrorMessage = state => fromListByColumn.getErrorMessage(state.l
 export const getIsFetching = state => fromListByColumn.getIsFetching(state.listByColumn)
 
 export const getAgency = (state, logo) => fromAgency.getAgency(state.agency, logo)
+
+export const getAuth = state => fromAuth.getAuth(state.auth)
