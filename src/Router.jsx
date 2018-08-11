@@ -12,9 +12,6 @@ import * as actions from './store/properties/actions'
 import LoginScreen from './screen/login'
 
 const Router = ({ auth = {} }) => {
-  console.log(auth)
-
-
   const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
       {...rest}
