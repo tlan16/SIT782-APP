@@ -1,40 +1,43 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es6": true,
-        "jasmine": true,
-        "jest": true
+    'env': {
+        'browser': true,
+        'es6': true,
+        'jasmine': true,
+        'jest': true,
     },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": 8,
-        "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
-            "jsx": true
+    'extends': 'airbnb',
+    'parser': 'babel-eslint',
+    'parserOptions': {
+        'ecmaVersion': 8,
+        'ecmaFeatures': {
+            'experimentalObjectRestSpread': true,
+            'jsx': true,
         },
-        "sourceType": "module"
+        'sourceType': 'module'
     },
-    "plugins": [
-        "react"
+    'plugins': [
+        'react'
     ],
-    "rules": {
-        "indent": [
-            "error",
-            4
+    'rules': {
+        'indent': [
+            'error',
+            2
         ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],                  
-        "quotes": [
-            "error",
-            "single"
+        'linebreak-style': [
+            'error',
+            'unix'
         ],
-        "semi": [
-            "error",
-            "always"
+        'quotes': [
+            'error',
+            'single'
         ],
-        "react/jsx-uses-vars": [2],  
-        "no-console": 0
+        'react/jsx-uses-vars': [2],
+        'no-console': 0,
+        'semi': 'off',
+        'import/prefer-default-export': 'off',
+        'import/no-named-as-default': 'off',
+        'comma-dangle': 'warn',
+        'function-paren-newline': 'off',
+        'react/jsx-wrap-multilines': 'off',
     }
 };
