@@ -37,6 +37,19 @@ const styleLoader = {
 
 }
 
+const imageLoader = {
+  test: /\.(gif|png|jpe?g|svg)$/i,
+  use: [
+    'file-loader',
+    {
+      loader: 'image-webpack-loader',
+      options: {
+        disable: true, // webpack@2.x and newer
+      },
+    },
+  ],
+}
+
 module.exports = {
   entry: ['babel-polyfill', './src/index.jsx'],
   output: {
@@ -47,6 +60,7 @@ module.exports = {
     rules: [
       javascriptLoader,
       styleLoader,
+      imageLoader,
     ],
   },
   resolve: {
