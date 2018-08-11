@@ -1,4 +1,4 @@
-import fakeResponse from './defaultResponse'
+import fakeResponse from './defaultResponse.json'
 
 const APIENDPOINT = process.env.APIENDPOINT
 
