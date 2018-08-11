@@ -8,7 +8,6 @@ const searchResponse = () => {
   async function getSearchResponse() {
     if (process.env.NODE_ENV === 'development') {
       await delay(500)
-      if (Math.random() > 0.5) throw new Error('Boom!')
       return fakeResponse
     }
     const response = await fetch(APIENDPOINT, {
