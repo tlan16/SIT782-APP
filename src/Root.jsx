@@ -2,7 +2,7 @@ import { Provider } from 'react-redux'
 import PropTypes from 'prop-types'
 import React from 'react'
 import MainScreen from './screen/main'
-import LoginScreen from './screen/login'
+import LoginScreen from './screen/login/index'
 
 const loggedIn = false // TODO: remove this stub
 
