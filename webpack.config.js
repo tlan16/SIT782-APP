@@ -11,7 +11,7 @@ const dotenvPlugin = new Dotenv({
 });
 
 module.exports = {
-    entry: ['babel-polyfill', './src/index.js'],
+    entry: ['babel-polyfill', './src/index.jsx'],
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
@@ -19,7 +19,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader'
@@ -39,10 +39,13 @@ module.exports = {
                             localIdentName: '[local]___[hash:base64:5]'
                         }
                     }]
-        
+
             }
-    
+
         ]
+    },
+    resolve: {
+      extensions: ['*', '.js', '.jsx'],
     },
     plugins: [htmlPlugin, dotenvPlugin]
 };
