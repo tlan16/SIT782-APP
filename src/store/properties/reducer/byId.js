@@ -1,13 +1,13 @@
-import { PROPERTIES_FETCHED } from '../actionTypes';
+import { PROPERTIES_FETCHED } from '../actionTypes'
 
 const byId = (state = {}, action = {}) => {
   switch (action.type) {
   case PROPERTIES_FETCHED:
-    return action.properties;
+    return action.properties
   default:
-    return state;
+    return state
   }
-};
-export default byId;
+}
+export default byId
 
-export const getById = (state, id) => state[id];
+export const getById = (state, id) => state[id]

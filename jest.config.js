@@ -5,4 +5,4 @@ module.exports = {
     '^.+\\.jsx?$': 'babel-jest',
     '.+\\.(css|styl|less|sass|scss)$': './node_modules/jest-css-modules-transform',
   },
-};
+}

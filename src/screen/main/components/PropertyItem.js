@@ -1,20 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { addToSaved, removeFromSaved } from '../../../store/properties/actions';
-import { getAgency, getById } from '../../../store/properties/reducer';
-import { bindActionCreators } from 'redux';
-import { Panel } from 'react-bootstrap';
-import styles from './css/PropertyItem.css';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { addToSaved, removeFromSaved } from '../../../store/properties/actions'
+import { getAgency, getById } from '../../../store/properties/reducer'
+import { bindActionCreators } from 'redux'
+import { Panel } from 'react-bootstrap'
+import styles from './css/PropertyItem.css'
 
 class PropertyItem extends React.Component {
   render() {
     const {
       id, onClick, isAdd, agency, property,
-    } = this.props;
-    const headingStyle = { background: agency.brandingColors.primary };
-    const logo = agency.logo;
-    const mainImage = property.mainImage;
+    } = this.props
+    const headingStyle = { background: agency.brandingColors.primary }
+    const logo = agency.logo
+    const mainImage = property.mainImage
     return (
       <Panel>
         <Panel.Heading style={headingStyle}>
@@ -29,7 +29,7 @@ class PropertyItem extends React.Component {
               <button
                 className={styles.button}
                 onClick={() => {
-                  onClick(id);
+                  onClick(id)
                 }}
               >
                 {isAdd ? 'Add' : 'Delete'}
@@ -38,7 +38,7 @@ class PropertyItem extends React.Component {
           </div>
         </Panel.Body>
       </Panel>
-    );
+    )
   }
 }
 
@@ -53,23 +53,23 @@ const mapDispatchToProps = (dispatch, ownProps) =>
       onClick: ownProps.isAdd ? addToSaved : removeFromSaved,
     },
     dispatch,
-  );
+  )
 
 const mapStateToProps = (state, ownProps) => ({
   agency: getAgency(state, getById(state, ownProps.id).agency),
   property: getById(state, ownProps.id),
-});
+})
 
 PropertyItem.propTypes = {
   id: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   isAdd: PropTypes.bool.isRequired,
   agency: PropTypes.object.isRequired,
-};
+}
 
-export default PropertyItem;
+export default PropertyItem
 
 export const ConnectedPropertyItem = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(PropertyItem);
+)(PropertyItem)

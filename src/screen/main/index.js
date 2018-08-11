@@ -1,30 +1,30 @@
-import React from 'react';
-import Column from './components/Column';
-import ErrorComponent from './components/ErrorComponent';
-import { Grid, Col, Row } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import React from 'react'
+import Column from './components/Column'
+import ErrorComponent from './components/ErrorComponent'
+import { Grid, Col, Row } from 'react-bootstrap'
+import { connect } from 'react-redux'
 import {
   getSavedProperties,
   getResultsProperties,
   getIsFetching,
   getErrorMessage,
-} from '../../store/properties/reducer';
-import * as actions from '../../store/properties/actions';
+} from '../../store/properties/reducer'
+import * as actions from '../../store/properties/actions'
 
 class MainScreen extends React.Component {
   componentDidMount() {
-    this.fetchData();
+    this.fetchData()
   }
   fetchData() {
-    const { fetchSearchResponse } = this.props;
-    fetchSearchResponse();
+    const { fetchSearchResponse } = this.props
+    fetchSearchResponse()
   }
   render() {
     const {
       saved, results, isFetching, errorMessage,
-    } = this.props;
-    if (isFetching) return (<p>is fetching ...</p>);
-    if (errorMessage) return (<ErrorComponent message={errorMessage} onRetry={() => this.fetchData()} />);
+    } = this.props
+    if (isFetching) return (<p>is fetching ...</p>)
+    if (errorMessage) return (<ErrorComponent message={errorMessage} onRetry={() => this.fetchData()} />)
     return (
       <Grid>
         <Row>
@@ -44,7 +44,7 @@ class MainScreen extends React.Component {
           </Col>
         </Row>
       </Grid>
-    );
+    )
   }
 }
 
@@ -53,9 +53,9 @@ const mapStateToProps = state => ({
   results: getResultsProperties(state),
   isFetching: getIsFetching(state),
   errorMessage: getErrorMessage(state),
-});
+})
 
 export default connect(
   mapStateToProps,
   actions,
-)(MainScreen);
+)(MainScreen)
