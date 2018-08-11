@@ -1,20 +1,11 @@
 import { Provider } from 'react-redux'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import MainScreen from './screen/main'
-import LoginScreen from './screen/login/index'
-
-const loggedIn = false // TODO: remove this stub
+import Router from './Router'
 
 const Root = ({ store }) =>
   <Provider store={store}>
-    <Router>
-      <Switch>
-        <Route path="/login" component={LoginScreen} />
-        <Route component={LoginScreen} />
-      </Switch>
-    </Router>
+    <Router />
   </Provider>
 
 Root.propTypes = {
