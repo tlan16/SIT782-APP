@@ -1,7 +1,15 @@
-import searchResponse from '../../../service/searchResponse'
-import * as schema from '../../../schema'
 import { normalize } from 'normalizr'
-import { PROPERTIES_FETCHED, FETCHPROPERTY_REQUEST, ADD_TO_SAVED, REMOVE_FROM_SAVED, FETCHPROPERTY_FAILURE } from '../actionTypes'
+import searchResponse from '../../../service/searchResponse'
+import authResponse from '../../../service/authResponse'
+import * as schema from '../../../schema'
+import {
+  PROPERTIES_FETCHED,
+  FETCHPROPERTY_REQUEST,
+  ADD_TO_SAVED,
+  REMOVE_FROM_SAVED,
+  FETCHPROPERTY_FAILURE,
+  LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST,
+} from '../actionTypes'
 import { getIsFetching } from '../reducer'
 
 export const fetchSearchResponse = () => async (dispatch, getState) => {
@@ -28,6 +36,33 @@ export const fetchSearchResponse = () => async (dispatch, getState) => {
     console.error(error)
     dispatch({
       type: FETCHPROPERTY_FAILURE,
+      message: error.message || 'Something is wrong!',
+    })
+  }
+}
+
+export const fetchAuthResponse = (username, password) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: LOGIN_REQUEST,
+    })
+    const response = await authResponse.login(username, password)
+    const {
+      data: {
+        accessToken: token,
+        userDetails: user,
+      },
+    } = response
+
+    dispatch({
+      type: LOGIN_SUCCESS,
+      token,
+      user,
+    })
+  } catch (error) {
+    console.error(error)
+    dispatch({
+      type: LOGIN_FAILURE,
       message: error.message || 'Something is wrong!',
     })
   }
