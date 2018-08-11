@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "webpack-dev-server --mode development",
-    "build": "webpack --mode production"
+    "start": "webpack-dev-server --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "build:analyse": "webpack --config webpack.prod.js --profile --json > stats.json && webpack-bundle-analyzer stats.json",
+    "serve": "http-server ./dist --push-state"
   },
   "author": "",
   "license": "ISC",
@@ -33,6 +35,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.0",
     "dotenv-webpack": "^1.5.7",
     "enzyme": "^3.3.0",
@@ -50,8 +53,11 @@
     "react-test-renderer": "^16.4.1",
     "redux-testkit": "^1.0.6",
     "style-loader": "^0.21.0",
+    "uglifyjs-webpack-plugin": "^1.2.7",
     "webpack": "^4.12.0",
+    "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.0.7",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.1.5",
+    "webpack-merge": "^4.1.4"
   }
 }
