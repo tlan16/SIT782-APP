@@ -33,7 +33,10 @@ module.exports = {
         ],
         'react/jsx-uses-vars': [2],
         'no-console': 0,
-        'semi': 'off',
+        'semi': [
+            'warn',
+            'never',
+        ],
         'import/prefer-default-export': 'off',
         'import/no-named-as-default': 'off',
         'comma-dangle': 'warn',
