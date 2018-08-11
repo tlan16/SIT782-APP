@@ -1,8 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Grid, Col, Row } from 'react-bootstrap'
-import Column from './components/Column'
-import ErrorComponent from './components/ErrorComponent'
 
 import {
   getSavedProperties,
