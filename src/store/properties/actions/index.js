@@ -8,7 +8,7 @@ import {
   ADD_TO_SAVED,
   REMOVE_FROM_SAVED,
   FETCHPROPERTY_FAILURE,
-  LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST,
+  LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE,
 } from '../actionTypes'
 import { getIsFetching } from '../reducer'
 
@@ -63,6 +63,43 @@ export const fetchLoginResponse = (username, password) => async (dispatch) => {
     console.error(error)
     dispatch({
       type: LOGIN_FAILURE,
+      message: error.message || 'Something is wrong!',
+    })
+  }
+}
+
+export const fetchSignupResponse = (
+  firstName,
+  lastName,
+  username,
+  password,
+) => async (dispatch) => {
+  try {
+    dispatch({
+      type: SIGNUP_REQUEST,
+    })
+    const response = await authResponse.signUp(
+      firstName,
+      lastName,
+      username,
+      password,
+    )
+    const {
+      data: {
+        accessToken: token,
+        userDetails: user,
+      },
+    } = response
+
+    dispatch({
+      type: SIGNUP_SUCCESS,
+      token,
+      user,
+    })
+  } catch (error) {
+    console.error(error)
+    dispatch({
+      type: SIGNUP_FAILURE,
       message: error.message || 'Something is wrong!',
     })
   }

@@ -17,20 +17,30 @@ import style from '../style.css'
 class LoginScreen extends React.Component {
   constructor(props) {
     super(props)
+    this.createFormRefs()
+  }
+
+  createFormRefs() {
+    this.firstName = React.createRef()
+    this.lastName = React.createRef()
     this.username = React.createRef()
     this.password = React.createRef()
   }
 
-  componentDidMount() {
-  }
-
   signIn = (event) => {
     event.preventDefault()
+    const firstName = this.firstName.current.value
+    const lastName = this.lastName.current.value
     const username = this.username.current.value
     const password = this.password.current.value
 
-    const { fetchLoginResponse } = this.props
-    fetchLoginResponse(username, password).then(() => {
+    const { fetchSignupResponse } = this.props
+    fetchSignupResponse(
+      firstName,
+      lastName,
+      username,
+      password,
+    ).then(() => {
       this.props.history.push('/profile')
     })
   }
@@ -102,10 +112,32 @@ class LoginScreen extends React.Component {
                     <input
                       className="form-control m-input"
                       type="text"
+                      placeholder="First Name"
+                      name="firstName"
+                      autoComplete="off"
+                      defaultValue={process.env.NODE_ENV === 'development' ? 'Test' : ''}
+                      ref={this.firstName}
+                    />
+                  </div>
+                  <div className="form-group m-form__group">
+                    <input
+                      className="form-control m-input"
+                      type="text"
+                      placeholder="Last Name"
+                      name="lastName"
+                      autoComplete="off"
+                      defaultValue={process.env.NODE_ENV === 'development' ? 'User' : ''}
+                      ref={this.lastName}
+                    />
+                  </div>
+                  <div className="form-group m-form__group">
+                    <input
+                      className="form-control m-input"
+                      type="text"
                       placeholder="Username"
                       name="username"
                       autoComplete="off"
-                      defaultValue="a@b.com"
+                      defaultValue={process.env.NODE_ENV === 'development' ? `${Math.random().toString(36).substring(7)}@example.com` : ''}
                       ref={this.username}
                     />
                   </div>
