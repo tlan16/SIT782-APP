@@ -72,12 +72,12 @@ class LoginScreen extends React.Component {
             <div className="m-grid__item">
               <div className="m-login__info">
                 <div className="m-login__section">
-                  <a href="/" className={`m-link ${style.disabledLink}`}>© {(new Date()).getFullYear()} All Rights Reserved</a>
+                  <a href="/" className="m-link disabledLink">© {(new Date()).getFullYear()} All Rights Reserved</a>
                 </div>
                 <div className="m-login__section">
-                  <a href="/" className={`m-link ${style.disabledLink}`}>Privacy</a>
-                  <a href="/" className={`m-link ${style.disabledLink}`}>Legal</a>
-                  <a href="/" className={`m-link ${style.disabledLink}`}>Contact</a>
+                  <a href="/" className="m-link disabledLink">Privacy</a>
+                  <a href="/" className="m-link disabledLink">Legal</a>
+                  <a href="/" className="m-link disabledLink">Contact</a>
                 </div>
               </div>
             </div>
