@@ -1,6 +1,4 @@
-const API_ENDPOINT = process.env.API_ENDPOINT
-
-console.log(API_ENDPOINT)
+const { API_ENDPOINT } = process.env
 
 const authResponse = () => {
   async function login(emailId, password) {
