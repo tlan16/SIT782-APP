@@ -85,8 +85,8 @@ class LoginScreen extends React.Component {
           <div className="m-grid__item m-grid__item--fluid  m-grid__item--order-tablet-and-mobile-1  m-login__wrapper">
             {/* begin::Head */}
             <div className="m-login__head">
-              <span>Don&apos;t have an account?</span>
-              <Link to="/signup" className="m-link m--font-danger">Sign Up</Link>
+              <span>Already have an account?</span>
+              <Link to="/signin" className="m-link m--font-danger">Log In</Link>
             </div>
             {/* end::Head */}
             {/* begin::Body */}
@@ -94,7 +94,7 @@ class LoginScreen extends React.Component {
               {/* begin::Signin */}
               <div className="m-login__signin">
                 <div className="m-login__title">
-                  <h3>Log In</h3>
+                  <h3>Sign Up</h3>
                 </div>
                 {/* begin::Form */}
                 <form className="m-login__form m-form">
@@ -130,7 +130,7 @@ class LoginScreen extends React.Component {
                     <button
                       className="btn btn-primary m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn--primary"
                       onClick={this.signIn}
-                    >Log In
+                    >Sign Up
                     </button>
                   </a>
                 </div>
