@@ -41,7 +41,7 @@ export const fetchSearchResponse = () => async (dispatch, getState) => {
   }
 }
 
-export const fetchAuthResponse = (username, password) => async (dispatch, getState) => {
+export const fetchLoginResponse = (username, password) => async (dispatch) => {
   try {
     dispatch({
       type: LOGIN_REQUEST,

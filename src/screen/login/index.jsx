@@ -29,8 +29,8 @@ class LoginScreen extends React.Component {
     const username = this.username.current.value
     const password = this.password.current.value
 
-    const { fetchAuthResponse } = this.props
-    fetchAuthResponse(username, password).then(() => {
+    const { fetchLoginResponse } = this.props
+    fetchLoginResponse(username, password).then(() => {
       this.props.history.push('/profile')
     })
   }
