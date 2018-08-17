@@ -94,7 +94,7 @@ class LoginScreen extends React.Component {
               {/* begin::Signin */}
               <div className="m-login__signin">
                 <div className="m-login__title">
-                  <h3>Create Account</h3>
+                  <h3>Sign In</h3>
                 </div>
                 {/* begin::Form */}
                 <form className="m-login__form m-form">
