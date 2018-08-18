@@ -25,7 +25,8 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "seamless-immutable": "^7.1.3",
-    "spa-http-server": "^0.9.0"
+    "spa-http-server": "^0.9.0",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

@@ -12,7 +12,7 @@ const devServer = {
   bonjour: true,
   compress: true,
   hot: true,
-  https: true,
+  https: false,
   historyApiFallback: true,
 }
 

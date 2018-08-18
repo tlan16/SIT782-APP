@@ -22,7 +22,10 @@ const javascriptLoader = {
 
 const styleLoader = {
   test: /\.css$/,
-  use: ['style-loader', 'css-loader'],
+  use: [
+    'style-loader',
+    'css-loader',
+  ],
 }
 
 const imageLoader = {
@@ -38,6 +41,13 @@ const imageLoader = {
   ],
 }
 
+const fontLoader = {
+  test: /\.(woff|woff2|eot|ttf|otf)$/,
+  use: [
+    'file-loader',
+  ],
+}
+
 module.exports = {
   entry: ['babel-polyfill', './src/index.jsx'],
   output: {
@@ -49,6 +59,7 @@ module.exports = {
       javascriptLoader,
       styleLoader,
       imageLoader,
+      fontLoader,
     ],
   },
   resolve: {
