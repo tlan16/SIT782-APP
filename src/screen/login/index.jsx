@@ -2,17 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 
-import {
-  getSavedProperties,
-  getResultsProperties,
-  getIsFetching,
-  getErrorMessage,
-} from '../../store/properties/reducer'
+import { getAuth } from '../../store/properties/reducer'
 import * as actions from '../../store/properties/actions'
 
 import logo from '../../../statics/theme/metronic/default/dist/default/assets/app/media/img/logos/logo-4.png'
 import leftPanelBackground from '../../../statics/theme/metronic/default/dist/default/assets/app/media/img/bg/bg-4.jpg'
-import style from '../style.css'
+import '../style.css'
 
 class LoginScreen extends React.Component {
   constructor(props) {
@@ -21,21 +16,26 @@ class LoginScreen extends React.Component {
     this.password = React.createRef()
   }
 
-  componentDidMount() {
-  }
-
   signIn = (event) => {
     event.preventDefault()
     const username = this.username.current.value
     const password = this.password.current.value
 
     const { fetchLoginResponse } = this.props
-    fetchLoginResponse(username, password).then(() => {
-      this.props.history.push('/profile')
-    })
+    fetchLoginResponse(username, password)
+      .then(() => {
+        this.props.history.push('/profile')
+      })
+      .catch(() => {
+        this.props.history.push('/login')
+      })
   }
 
   render() {
+    const {
+      auth,
+    } = this.props
+
     return (
       (
         <div
@@ -96,6 +96,9 @@ class LoginScreen extends React.Component {
                 <div className="m-login__title">
                   <h3>Log In</h3>
                 </div>
+                {
+                  auth.reason ? <span className="text-danger">Login Failed: {auth.reason}</span> : undefined
+                }
                 {/* begin::Form */}
                 <form className="m-login__form m-form">
                   <div className="form-group m-form__group">
@@ -107,6 +110,7 @@ class LoginScreen extends React.Component {
                       autoComplete="off"
                       defaultValue="a@b.com"
                       ref={this.username}
+                      disabled={auth.loading}
                     />
                   </div>
                   <div className="form-group m-form__group">
@@ -117,6 +121,7 @@ class LoginScreen extends React.Component {
                       name="password"
                       defaultValue="12345"
                       ref={this.password}
+                      disabled={auth.loading}
                     />
                   </div>
                 </form>
@@ -130,6 +135,7 @@ class LoginScreen extends React.Component {
                     <button
                       className="btn btn-primary m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn--primary"
                       onClick={this.signIn}
+                      disabled={auth.loading}
                     >Log In
                     </button>
                   </a>
@@ -178,10 +184,7 @@ class LoginScreen extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  saved: getSavedProperties(state),
-  results: getResultsProperties(state),
-  isFetching: getIsFetching(state),
-  errorMessage: getErrorMessage(state),
+  auth: getAuth(state),
 })
 
 export default

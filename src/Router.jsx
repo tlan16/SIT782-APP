@@ -19,7 +19,7 @@ const Router = ({ auth = {} }) => {
     <Route
       {...rest}
       render={props =>
-        (Object.keys(auth).length > 0 ? (
+        (auth.authorized ? (
           <Component {...props} />
         ) : (
           <Redirect

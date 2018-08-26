@@ -9,14 +9,9 @@ async function login(emailId, password) {
     },
     body: JSON.stringify({ emailId, password }),
   })
-  if (!response.ok) {
-    throw new Error(
-      `searchResponse getSearchResponse failed, HTTP status ${
-        response.status
-      }`,
-    )
-  }
+
   const data = await response.json()
+  if (!response.ok) { throw new Error(data.message) }
   return data
 }
 
@@ -32,14 +27,9 @@ async function signUp(first_name, last_name, emailId, password) {
       first_name, last_name, emailId, password,
     }),
   })
-  if (!response.ok) {
-    throw new Error(
-      `searchResponse getSearchResponse failed, HTTP status ${
-        response.status
-      }`,
-    )
-  }
+
   const data = await response.json()
+  if (!response.ok) { throw new Error(data.message) }
   return data
 }
 

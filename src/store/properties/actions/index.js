@@ -46,6 +46,7 @@ export const fetchLoginResponse = (username, password) => async (dispatch) => {
     dispatch({
       type: LOGIN_REQUEST,
     })
+
     const response = await authResponse.login(username, password)
     const {
       data: {
@@ -60,11 +61,11 @@ export const fetchLoginResponse = (username, password) => async (dispatch) => {
       user,
     })
   } catch (error) {
-    console.error(error)
     dispatch({
       type: LOGIN_FAILURE,
       message: error.message || 'Something is wrong!',
     })
+    throw error
   }
 }
 
@@ -97,11 +98,11 @@ export const fetchSignupResponse = (
       user,
     })
   } catch (error) {
-    console.error(error)
     dispatch({
       type: SIGNUP_FAILURE,
       message: error.message || 'Something is wrong!',
     })
+    throw error
   }
 }
 

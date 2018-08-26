@@ -6,7 +6,7 @@ import {
   getSavedProperties,
   getResultsProperties,
   getIsFetching,
-  getErrorMessage,
+  getErrorMessage, getAuth,
 } from '../../store/properties/reducer'
 import * as actions from '../../store/properties/actions'
 
@@ -27,7 +27,7 @@ class LoginScreen extends React.Component {
     this.password = React.createRef()
   }
 
-  signIn = (event) => {
+  signIn = async (event) => {
     event.preventDefault()
     const firstName = this.firstName.current.value
     const lastName = this.lastName.current.value
@@ -35,17 +35,20 @@ class LoginScreen extends React.Component {
     const password = this.password.current.value
 
     const { fetchSignupResponse } = this.props
-    fetchSignupResponse(
+    await fetchSignupResponse(
       firstName,
       lastName,
       username,
       password,
-    ).then(() => {
-      this.props.history.push('/profile')
-    })
+    )
+    this.props.history.push('/profile')
   }
 
   render() {
+    const {
+      auth,
+    } = this.props
+
     return (
       (
         <div
@@ -106,6 +109,9 @@ class LoginScreen extends React.Component {
                 <div className="m-login__title">
                   <h3>Sign Up</h3>
                 </div>
+                {
+                  auth.reason ? <span className="text-danger">Login Failed: {auth.reason}</span> : undefined
+                }
                 {/* begin::Form */}
                 <form className="m-login__form m-form">
                   <div className="form-group m-form__group">
@@ -117,6 +123,7 @@ class LoginScreen extends React.Component {
                       autoComplete="off"
                       defaultValue={process.env.NODE_ENV === 'development' ? 'Test' : ''}
                       ref={this.firstName}
+                      disabled={auth.loading}
                     />
                   </div>
                   <div className="form-group m-form__group">
@@ -128,6 +135,7 @@ class LoginScreen extends React.Component {
                       autoComplete="off"
                       defaultValue={process.env.NODE_ENV === 'development' ? 'User' : ''}
                       ref={this.lastName}
+                      disabled={auth.loading}
                     />
                   </div>
                   <div className="form-group m-form__group">
@@ -139,6 +147,7 @@ class LoginScreen extends React.Component {
                       autoComplete="off"
                       defaultValue={process.env.NODE_ENV === 'development' ? `${Math.random().toString(36).substring(7)}@example.com` : ''}
                       ref={this.username}
+                      disabled={auth.loading}
                     />
                   </div>
                   <div className="form-group m-form__group">
@@ -149,6 +158,7 @@ class LoginScreen extends React.Component {
                       name="password"
                       defaultValue="12345"
                       ref={this.password}
+                      disabled={auth.loading}
                     />
                   </div>
                 </form>
@@ -162,6 +172,7 @@ class LoginScreen extends React.Component {
                     <button
                       className="btn btn-primary m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn--primary"
                       onClick={this.signIn}
+                      disabled={auth.loading}
                     >Sign Up
                     </button>
                   </a>
@@ -210,10 +221,7 @@ class LoginScreen extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  saved: getSavedProperties(state),
-  results: getResultsProperties(state),
-  isFetching: getIsFetching(state),
-  errorMessage: getErrorMessage(state),
+  auth: getAuth(state),
 })
 
 export default
