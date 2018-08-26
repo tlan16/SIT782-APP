@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom'
 import WebFont from 'webfontloader'
 import Root from './Root'
 import store from './configureStore'
-import '../statics/theme/metronic/default/dist/default/assets/vendors/base/vendors.bundle.css'
-import '../statics/theme/metronic/default/dist/default/assets/demo/default/base/style.bundle.css'
 
 const { API_ENDPOINT } = process.env
 
