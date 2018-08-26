@@ -51,7 +51,7 @@ const fontLoader = {
 module.exports = {
   entry: ['babel-polyfill', './src/index.jsx'],
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].[contenthash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
