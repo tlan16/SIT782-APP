@@ -12,7 +12,7 @@ import * as actions from '../../store/properties/actions'
 
 import logo from '../../../statics/theme/metronic/default/dist/default/assets/app/media/img/logos/logo-4.png'
 import leftPanelBackground from '../../../statics/theme/metronic/default/dist/default/assets/app/media/img/bg/bg-4.jpg'
-import style from '../style.css'
+import '../style.css'
 
 class LoginScreen extends React.Component {
   constructor(props) {

@@ -12,6 +12,7 @@ import * as actions from './store/properties/actions'
 import LoginScreen from './screen/login'
 import SignUpScreen from './screen/signup'
 import ProfileScreen from './screen/profile'
+import MainScreen from './screen/main'
 
 const Router = ({ auth = {} }) => {
   const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -37,6 +38,7 @@ const Router = ({ auth = {} }) => {
         <Route path="/login" component={LoginScreen} />
         <Route path="/signup" component={SignUpScreen} />
         <PrivateRoute path="/profile" component={ProfileScreen} />
+        <PrivateRoute path="/main" component={MainScreen} />
         <Route component={LoginScreen} />
       </Switch>
     </BrowserRouter>

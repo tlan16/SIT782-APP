@@ -8,7 +8,7 @@ import TopNav from '../components/topNav'
 import Footer from '../components/footer'
 import Subtitle from '../components/subheader'
 
-class ProfileScreen extends React.Component {
+class Main extends React.Component {
   render() {
     const {
       token,
@@ -27,10 +27,10 @@ class ProfileScreen extends React.Component {
           <TopNav />
           <div className="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
             <div className="m-grid__item m-grid__item--fluid m-wrapper">
-              <Subtitle title="Dashboard" />
+              <Subtitle title="Main Page" />
               <div className="m-content">
                 <div className="row">
-                  Here is the profile content
+                  Here is the main content
                 </div>
               </div>
             </div>
@@ -51,5 +51,5 @@ withRouter(
   connect(
     mapStateToProps,
     actions,
-  )(ProfileScreen),
+  )(Main),
 )
