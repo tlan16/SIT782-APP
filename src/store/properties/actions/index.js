@@ -1,6 +1,7 @@
 import { normalize } from 'normalizr'
 import searchResponse from '../../../service/searchResponse'
 import authResponse from '../../../service/authResponse'
+import profileResponse from '../../../service/profileResponse'
 import * as schema from '../../../schema'
 import {
   PROPERTIES_FETCHED,
@@ -8,7 +9,14 @@ import {
   ADD_TO_SAVED,
   REMOVE_FROM_SAVED,
   FETCHPROPERTY_FAILURE,
-  LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGIN_REQUEST,
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILURE,
+  UPDATE_PROFILE_REQUEST,
+  UPDATE_PROFILE_SUCCESS, UPDATE_PROFILE_FAILURE,
 } from '../actionTypes'
 import { getIsFetching } from '../reducer'
 
@@ -105,6 +113,27 @@ export const fetchSignupResponse = (
     throw error
   }
 }
+
+export const fetchUpdateProfileResponse = (token, oldPassword, newPassword) => async (dispatch) => {
+  try {
+    dispatch({
+      type: UPDATE_PROFILE_REQUEST,
+    })
+
+    await profileResponse.updateProfile(token, oldPassword, newPassword)
+
+    dispatch({
+      type: UPDATE_PROFILE_SUCCESS,
+    })
+  } catch (error) {
+    dispatch({
+      type: UPDATE_PROFILE_FAILURE,
+      message: error.message || 'Something is wrong!',
+    })
+    throw error
+  }
+}
+
 
 export const addToSaved = id => async (dispatch) => {
   try {

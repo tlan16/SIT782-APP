@@ -30,10 +30,7 @@ const auth = (state = { authorized: false, loading: false }, action = {}) => {
       reason: action.message,
     }
   default:
-    return {
-      authorized: false,
-      loading: false,
-    }
+    return state
   }
 }
 

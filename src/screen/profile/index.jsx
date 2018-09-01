@@ -2,12 +2,38 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-import { getAuth } from '../../store/properties/reducer'
+import { getAuth, getProfile } from '../../store/properties/reducer'
 import * as actions from '../../store/properties/actions'
 import TopNav from '../components/topNav'
 import Footer from '../components/footer'
 
 class ProfileScreen extends React.Component {
+  constructor(props) {
+    super(props)
+    this.password = React.createRef()
+    this.newPassword = React.createRef()
+    console.log(this.props)
+  }
+
+  updateProfile = (event) => {
+    event.preventDefault()
+    const password = this.password.current.value
+    const newPassword = this.newPassword.current.value
+
+    const {
+      fetchUpdateProfileResponse,
+      auth: { token },
+    } = this.props
+
+    fetchUpdateProfileResponse(token, password, newPassword)
+      .then(() => {
+        this.props.history.push('/profile')
+      })
+      .catch(() => {
+        this.props.history.push('/profile')
+      })
+  }
+
   render() {
     const {
       token,
@@ -46,28 +72,34 @@ class ProfileScreen extends React.Component {
                       <form className="m-form m-form--fit m-form--label-align-right">
                         <div className="m-portlet__body">
                           <div className="form-group m-form__group">
-                            <label htmlFor="exampleInputEmail1">Email address</label>
-                            <input type="email" className="form-control m-input m-input--square" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                            <span className="m-form__help">We'll never share your email with anyone else.</span>
+                            <label>Password</label>
+                            <input
+                              type="password"
+                              className="form-control m-input m-input--square"
+                              placeholder="Password"
+                              ref={this.password}
+                            />
                           </div>
+                        </div>
+                        <div className="m-portlet__body">
                           <div className="form-group m-form__group">
-                            <label htmlFor="exampleInputPassword1">Password</label>
-                            <input type="password" className="form-control m-input m-input--square" id="exampleInputPassword1" placeholder="Password" />
-                          </div>
-                          <div className="form-group m-form__group">
-                            <label htmlFor="exampleSelect1">Example select</label>
-                            <select className="form-control m-input m-input--square" id="exampleSelect1">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
+                            <label>Password</label>
+                            <input
+                              type="password"
+                              className="form-control m-input m-input--square"
+                              placeholder="New Password"
+                              ref={this.newPassword}
+                            />
                           </div>
                         </div>
                         <div className="m-portlet__foot m-portlet__foot--fit">
                           <div className="m-form__actions">
-                            <button type="reset" className="btn btn-metal">Submit</button>
+                            <button
+                              type="reset"
+                              className="btn btn-metal"
+                              onClick={this.updateProfile}
+                            >Submit
+                            </button>
                             <button type="reset" className="btn btn-secondary">Cancel</button>
                           </div>
                         </div>
@@ -88,6 +120,7 @@ class ProfileScreen extends React.Component {
 
 const mapStateToProps = state => ({
   auth: getAuth(state),
+  profile: getProfile(state),
 })
 
 export default
