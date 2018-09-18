@@ -1,8 +1,8 @@
 # SIT782-app
-This is for SIT737 assignment 2 at Deakin University for Trimaster 1, 2018
+This is for SIT782 at Deakin University for Trimaster 2, 2018
 
-## Documentation
-[Via Postman](https://documenter.getpostman.com/view/90962/RW89JTyQ)
+
+
 
 ## Run
 ### Docker
