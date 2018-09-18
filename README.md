@@ -1,12 +1,32 @@
-# REA REACT-TDD
+# SIT782-app
+This is for SIT737 assignment 2 at Deakin University for Trimaster 1, 2018
 
-Install, run and test:
+## Documentation
+[Via Postman](https://documenter.getpostman.com/view/90962/RW89JTyQ)
 
+## Run
+### Docker
+**Make sure port `8080` is *not* occupied**. Otherwise, you'll need to update `docker-compose.yml`
+
+Make sure no active container(s)
 ```
-npm install
-npm run start
-npm run test
+docker-compose down
+```
+Build
+```
+docker-compose build --no-cache
+```
+Run
+```
+docker-compose up
+```
 
-Under webpack development mode, response is mocked and an error is randomly generated.
-
-Redux makes it simple to have unit tests on actions reducers and selectors.
+### Node
+Install Dependencies
+```
+yarn
+```
+Run
+```
+yarn start
+```
