@@ -17,6 +17,9 @@ RUN sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
 # add project files
 COPY . .
 
+# copy over .env if not exist
+RUN cp -n .env.example .env
+
 # install node packages
 RUN npm install --quiet --loglevel=error
 
